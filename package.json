@@ -1,0 +1,30 @@
+{
+  "name": "pug-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtking2/pug-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mtking2/pug-site.git/issues"
+  },
+  "homepage": "https://github.com/mtking2/pug-site.git#readme",
+  "dependencies": {
+    "async": "^1.4.2",
+    "pug": "^2.0.0-rc.2",
+    "sass": "^1.0.0-beta.1",
+    "node-sass": "^4.5.3",
+    "lodash": "^3.10.1",
+    "superagent": "^1.4.0"
+  },
+  "devDependencies": {
+    "standard": "^5.3.1"
+  }
+}
