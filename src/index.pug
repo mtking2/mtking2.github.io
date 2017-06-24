@@ -1,8 +1,13 @@
 extends layout
 
 block content
-  header
-    h1 Michael King
-    p My life consists of writing code and staying up late at night to look up at the rest of the universe. Linux is the way to go 
+  header#header.site-header.content-block.text-light
+    canvas#headerCanvas
+    div.padding-2x: div.content
+      h1 Michael King
+      div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. Linux is the way to go.
+      div.social-block
+        a(href='https://github.com/mtking2/'): i.fa.fa-github
+        a(href='https://twitter.com/thaadjarvis/'): i.fa.fa-twitter
   //- footer
   //-   cool footer with lots of copyrights

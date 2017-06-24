@@ -1,16 +1,87 @@
+// @import "./styles/cute-reset"
+@import "styles/variables.sass"
+@import "styles/layout.sass"
+
 body
-  font-family: "Helvetica"
+  font-size: $font-size
+  font-family: $font-family
+  font-weight: $base-font-weight
+  line-height: $line-height
+  background: $dark-color
+  color: #333
+h1, .h1
+  font-size: 4em
+  font-family: $font-family-bold
+  font-weight: $bold-font-weight
+h2, .h2
+  font-size: 2.5em
+  font-weight: $bold-font-weight
+h3, .h3
+  font-size: 1.5em
+  font-weight: $bold-font-weight
+h4, .h4
+  font-size: 1.25em
+  font-weight: $bold-font-weight
+h5, .h5
+  font-size: 1.125em
+  font-weight: $bold-font-weight
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6
+  line-height: 1.12
+  margin-top: 0
+  margin-bottom: 0.309rem
+
+a
+  display: inline-block
+  color: $link-color
+  &:hover
+    color: darken($link-color, 10%)
+
+.site-header
+  color: #fff
+  &-subtitle
+    padding-top: 0.5rem
+    font-size: 1.318em
+    font-weight: $base-font-weight
+  canvas
+    position: absolute
+    top: 0
+    left: 0
+
+.site-footer
   text-align: center
-  padding: 50px 20px 0
-  background: #f4f4f7
-  color: #444
-  margin: 0
+  color: $light-gray
 
-h1
-  font-size: 65px
-  line-height: 1.2em
-  border-bottom: #CCC solid 1px
-  padding: 20px 0
+.social-block
+  margin-top: 1rem
+  a
+    font-size: 2em
+    display: inline-block
+    color: rgba(255, 255, 255, .8)
+    padding: 0 0.618rem
+    &:first-child
+      padding-left: 0
+    &:last-child
+      padding-right: 0
+    &:hover
+      color: #fff
 
-h3
-  font-weight: 300
+@media screen and (max-width: 1440px)
+  body
+    font-size: $font-size
+
+@media screen and (max-width: 1024px)
+  body
+    font-size: $font-size - 1
+  .q-1
+    width: 33.33%
+  .hide-from-tablet
+    display: none
+
+@media screen and (max-width: 640px)
+  body
+    font-size: $font-size - 2
+  .q-1
+    width: 50%
+  .hide-from-mobile
+    display: none
