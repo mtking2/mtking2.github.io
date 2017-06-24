@@ -5,6 +5,12 @@
   .content.-small {
     max-width: 704px; }
 
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-rendering: optimizeLegibility; }
+
 .padding-1x {
   padding: 1rem; }
 
@@ -110,6 +116,9 @@ a {
     position: absolute;
     top: 0;
     left: 0; }
+
+.content-block {
+  padding: 10vmin 5vmin; }
 
 .site-footer {
   text-align: center;
