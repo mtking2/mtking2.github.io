@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mtking2/pug-site.git"
+    "url": "git+https://github.com/mtking2/mtking2.github.io.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mtking2/pug-site.git/issues"
+    "url": "https://github.com/mtking2/mtking2.github.io.git/issues"
   },
-  "homepage": "https://github.com/mtking2/pug-site.git#readme",
+  "homepage": "https://github.com/mtking2/mtking2.github.io.git#readme",
   "dependencies": {
     "async": "^1.4.2",
     "pug": "^2.0.0-rc.2",
