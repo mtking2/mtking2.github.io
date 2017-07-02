@@ -72,7 +72,7 @@ body {
   font-weight: 300;
   line-height: 1.618;
   background: #111412;
-  color: #333; }
+  color: #ededed; }
 
 h1, .h1 {
   font-size: 4em;
@@ -81,6 +81,7 @@ h1, .h1 {
 
 h2, .h2 {
   font-size: 2.5em;
+  font-family: "Rubik", sans-serif;
   font-weight: 400; }
 
 h3, .h3 {
@@ -106,16 +107,17 @@ a {
   a:hover {
     color: #20638f; }
 
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
 .site-header {
-  color: #fff; }
+  color: #ededed; }
   .site-header-subtitle {
     padding-top: 0.5rem;
     font-size: 1.318em;
     font-weight: 300; }
-  .site-header canvas {
-    position: absolute;
-    top: 0;
-    left: 0; }
 
 .content-block {
   padding: 5rem 5rem; }
@@ -138,23 +140,80 @@ a {
     .social-block a:hover {
       color: #fff; }
 
+.github-block {
+  overflow: hidden; }
+  .github-block-element-link {
+    display: block; }
+  .github-block-title {
+    font-weight: 400;
+    min-width: 0; }
+    .github-block-title:hover {
+      text-decoration: underline; }
+  .github-block-thumbnail {
+    margin: 0 0 1em;
+    background-color: #BDC3C7;
+    border-radius: 2px;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 0;
+    padding-bottom: 60%;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
+    display: block; }
+  .github-block-element {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-height: 21rem; }
+  .github-block-stats {
+    white-space: nowrap; }
+  .github-block-description {
+    max-height: 4rem;
+    margin-bottom: 5px; }
+  .github-block .icon-star {
+    margin-right: 0.1em; }
+
+.instagram-block {
+  color: #fff; }
+  .instagram-block-element-link {
+    display: block; }
+  .instagram-block a {
+    color: #ededed; }
+    .instagram-block a:hover {
+      color: #d4d4d4; }
+  .instagram-block-description {
+    padding-top: .618rem; }
+  .instagram-block img {
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
+    border-radius: 2px;
+    width: 100%;
+    display: block; }
+
+.content-block {
+  padding: 10vmin 5vmin; }
+
+.text-light {
+  text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0; }
+
+.text-dark {
+  text-shadow: rgba(255, 255, 255, 0.1) 0 1px 0; }
+
 @media screen and (max-width: 2560px) {
   body {
     font-size: 18px; }
   .content-block {
-    padding: 10rem 10rem; } }
+    padding: 5rem 0 0 0; } }
 
 @media screen and (max-width: 1440px) {
   body {
     font-size: 16px; }
   .content-block {
-    padding: 5rem 5rem; } }
+    padding: 5rem 0 0 0; } }
 
 @media screen and (max-width: 1024px) {
   body {
     font-size: 15px; }
   .content-block {
-    padding: 5rem 5rem; }
+    padding: 5rem 5rem 0; }
   .q-1 {
     width: 33.33%; }
   .hide-from-tablet {
@@ -164,8 +223,32 @@ a {
   body {
     font-size: 14px; }
   .content-block {
-    padding: 1rem 0rem; }
+    padding: 2rem 1rem 1rem; }
   .q-1 {
     width: 50%; }
   .hide-from-mobile {
     display: none; } }
+
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+a {
+  text-decoration: none; }
+
+.flex {
+  display: flex; }
+
+.flex-1 {
+  flex: 1; }
+
+.flex-content-center {
+  align-items: center; }
+
+.flex-justify-center {
+  justify-content: center; }
+
+.flex-wrap {
+  flex-wrap: wrap; }

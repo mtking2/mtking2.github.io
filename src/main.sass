@@ -8,13 +8,16 @@ body
   font-weight: $base-font-weight
   line-height: $line-height
   background: $dark-color
-  color: #333
+  // background: $light-gray
+  // color: #333
+  color: $light-gray
 h1, .h1
   font-size: 4em
   font-family: $font-family-bold
   font-weight: $bold-font-weight
 h2, .h2
   font-size: 2.5em
+  font-family: $font-family-bold
   font-weight: $bold-font-weight
 h3, .h3
   font-size: 1.5em
@@ -37,16 +40,18 @@ a
   &:hover
     color: darken($link-color, 10%)
 
+canvas
+  position: absolute
+  top: 0
+  left: 0
+
 .site-header
-  color: #fff
+  color: $light-gray
   &-subtitle
     padding-top: 0.5rem
     font-size: 1.318em
     font-weight: $base-font-weight
-  canvas
-    position: absolute
-    top: 0
-    left: 0
+
 .content-block
   padding: 5rem 5rem
 
@@ -68,23 +73,84 @@ a
     &:hover
       color: #fff
 
+.github-block
+  // background: $light-gray
+  overflow: hidden
+  &-element-link
+    display: block
+  &-title
+    font-weight: $semibold-font-weight
+    min-width: 0
+    &:hover
+      text-decoration: underline
+  &-thumbnail
+    margin: 0 0 1em
+    background-color: #BDC3C7
+    border-radius: $border-radius
+    background-size: cover
+    background-position: center
+    width: 100%
+    height: 0
+    padding-bottom: 60%
+    box-shadow: $box-shadow
+    display: block
+  &-element
+    padding-top: 2rem
+    padding-bottom: 2rem
+    max-height: 21rem
+  &-stats
+    white-space: nowrap
+  &-description
+    max-height: 4rem
+    margin-bottom: 5px
+    // overflow: scroll
+  .icon-star
+    margin-right: 0.1em
+
+.instagram-block
+  // background: $dark-color
+  color: #fff
+  &-element-link
+    display: block
+  a
+    color: $light-gray
+    &:hover
+      color: darken($light-gray, 10%)
+  &-description
+    padding-top: .618rem
+  img
+    box-shadow: $box-shadow
+    border-radius: $border-radius
+    width: 100%
+    display: block
+
+.content
+  &-block
+    padding: 10vmin 5vmin
+
+// utils
+.text-light
+  text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0
+.text-dark
+  text-shadow: rgba(255, 255, 255, 0.1) 0 1px 0
+
 @media screen and (max-width: 2560px)
   body
     font-size: $font-size + 2
   .content-block
-    padding: 10rem 10rem
+    padding: 5rem 0 0 0
 
 @media screen and (max-width: 1440px)
   body
     font-size: $font-size
   .content-block
-    padding: 5rem 5rem
+    padding: 5rem 0 0 0
 
 @media screen and (max-width: 1024px)
   body
     font-size: $font-size - 1
   .content-block
-    padding: 5rem 5rem
+    padding: 5rem 5rem 0
   .q-1
     width: 33.33%
   .hide-from-tablet
@@ -94,8 +160,35 @@ a
   body
     font-size: $font-size - 2
   .content-block
-    padding: 1rem 0rem
+    padding: 2rem 1rem 1rem
   .q-1
     width: 50%
   .hide-from-mobile
     display: none
+
+
+
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
+
+html
+  box-sizing: border-box
+  // -webkit-tap-highlight-color: rgba(0,0,0,0)
+
+*, *:before, *:after
+  box-sizing: inherit
+
+a
+  text-decoration: none
+
+.flex
+  display: flex
+.flex-1
+  flex: 1
+.flex-content-center
+  align-items: center
+.flex-justify-center
+  justify-content: center
+.flex-wrap
+  flex-wrap: wrap

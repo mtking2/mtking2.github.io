@@ -1,13 +1,49 @@
 extends layout
 
 block content
+  
   header#header.site-header.content-block.text-light
-    canvas#headerCanvas
+    
     div.padding-1x: div.content
       h1 Michael King
       div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. <br> Linux is the way to go.
       div.social-block
         a(href='https://github.com/mtking2/'): i.fa.fa-github
         a(href='https://twitter.com/thaadjarvis/'): i.fa.fa-twitter
+  
+  div.github-block.content-block.text-dark
+    div.content
+      h2 I code stuff
+      h3 #[a(href='https://github.com/mtking2') @mtking2] on GitHub.
+      div.row
+        each github, githubIndex in githubData
+          div.padding-1x.github-block-element(class=[githubIndex < 4 ? 'col-4' : 'col-4', githubIndex > 5 ? 'hide-from-tablet' : '', githubIndex > 3 ? 'hide-from-mobile' : ''])
+            a(href=github.html_url).github-block-element-link.github-block-thumbnail(style='background-image: url(https://raw.githubusercontent.com/mtking2/' + github.name + '/gh-pages/assets/thumbnail.png)')
+            div.flex.flex-content-center.github-block-top
+              a(href=github.html_url).flex-1
+                h4.github-block-title= github.name
+              div.github-block-stats
+                span.fa.fa-star
+                span #{' ' + github.stargazers_count.toLocaleString() + ' - '}
+                span.fa.fa-code-fork
+                span #{' ' + github.forks}
+            div.github-block-description= github.description
+            div.button-container
+              //- a(href='http://javier.xyz/' + github.name).button.-outline Live demo
+              //- a(href=github.html_url).button.-invisible-dark Open repo
+          
+  div.instagram-block.text-light.content-block
+    div.content
+      h2 I take pictures of stuff
+      h3
+        | #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
+      div.flex.flex-justify-center.flex-wrap.row
+        each instagram, instagramIndex in instagramData
+          div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 2 ? 'hide-from-mobile' : '')
+            a(href=instagram.link).instagram-block-element-link
+              img(src=instagram.images.standard_resolution.url)
+              //- div.instagram-block-description.cf
+              //-   div.pull-left= instagram.caption.text
+  
   //- footer
   //-   cool footer with lots of copyrights

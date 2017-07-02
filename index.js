@@ -1,7 +1,7 @@
 var DancingDots = require('dancing-dots')
 var delaunay = require('delaunay-fast')
 
-var headerEl = document.getElementById('header')
+var headerEl = document.body
 var canvasEl = document.getElementById('headerCanvas')
 var ctx = canvasEl.getContext('2d')
 var triangles
@@ -11,8 +11,8 @@ const originalRatio = Math.round(headerSizes.width / headerSizes.height * 100)
 
 var dancingDotsIntance = new DancingDots({
   getOnlyInts: false,
-  dotCount: 50,
-  speed: 0.02,
+  dotCount: 100,
+  speed: 0.005,
   height: 100,
   width: originalRatio
 })
