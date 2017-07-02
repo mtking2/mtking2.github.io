@@ -1,2 +1,3 @@
 # mtking2.github.io
-Personal site
+Personal website  
+Static site generator using node + pug + sass
