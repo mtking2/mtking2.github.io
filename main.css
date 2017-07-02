@@ -151,7 +151,7 @@ canvas {
       text-decoration: underline; }
   .github-block-thumbnail {
     margin: 0 0 1em;
-    background-color: #BDC3C7;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 2px;
     background-size: cover;
     background-position: center;

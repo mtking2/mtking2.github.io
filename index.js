@@ -12,7 +12,7 @@ const originalRatio = Math.round(headerSizes.width / headerSizes.height * 100)
 var dancingDotsIntance = new DancingDots({
   getOnlyInts: false,
   dotCount: 100,
-  speed: 0.005,
+  speed: 0.01,
   height: 100,
   width: originalRatio
 })
