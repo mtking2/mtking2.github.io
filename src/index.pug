@@ -47,6 +47,21 @@ block content
               img(src=instagram.images.standard_resolution.url)
               //- div.instagram-block-description.cf
               //-   div.pull-left= instagram.caption.text
+  div.goodreads-block.text-dark.content-block: div.content
+    h2 I read stuff
+    h3 I'm #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
+    div.flex.flex-justify-center.flex-wrap.row
+      each goodreads, goodreadsIndex in goodreadsData
+        div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 3 ? 'hide-from-tablet' : '', goodreadsIndex > 1 ? 'hide-from-mobile' : ''])
+          a(href=goodreads.url).goodreads-block-element-link
+            div.goodreads-block-element-thumbnail(style=`background-image: url(${goodreads.thumbnail})`)
+            div.goodreads-block-element-status
+              span=goodreads.status
+              if goodreads.status === 'read'
+                span.goodreads-block-element-stars
+                each star in new Array(goodreads.myRating)
+                  span.icon.icon-star
+            div=goodreads.title + ' -' + goodreads.author
   
     //- footer.site-footer.content-block: div.content
     //-   h3 Michael King

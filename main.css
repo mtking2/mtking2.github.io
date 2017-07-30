@@ -11,6 +11,10 @@
   position: relative;
   text-rendering: optimizeLegibility; }
 
+img {
+  max-width: 100%;
+  height: auto; }
+
 .padding-1x {
   padding: 1rem; }
 
@@ -186,6 +190,37 @@ canvas {
     width: 100%;
     display: block; }
 
+.goodreads-block {
+  background: #f9f8f4;
+  color: #333; }
+  .goodreads-block-element-status {
+    border: 1px solid #ebe6d9;
+    background: #f4f1ea;
+    text-transform: uppercase;
+    color: #333;
+    line-height: 1;
+    padding: 0.4rem 0.4rem 0.3rem;
+    font-size: 0.55em;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    display: inline-block; }
+  .goodreads-block-element-stars {
+    margin-left: 0.5rem; }
+  .goodreads-block-element-link {
+    display: block; }
+  .goodreads-block-element-thumbnail {
+    width: 100%;
+    height: 0;
+    padding-bottom: 155%;
+    background-color: #e7e3d3;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
+    border-radius: 2px; }
+
 .about-block {
   color: #333;
   background: #fff; }
@@ -199,6 +234,9 @@ canvas {
 
 .content-block {
   padding: 10vmin 5vmin; }
+
+.q-1 {
+  width: 20%; }
 
 .text-light {
   text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0; }
