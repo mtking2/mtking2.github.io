@@ -118,12 +118,15 @@ canvas {
     padding-top: 0.5rem;
     font-size: 1.318em;
     font-weight: 300; }
+    .site-header-subtitle a {
+      color: #ededed; }
+      .site-header-subtitle a:hover {
+        color: #adadad; }
 
 .content-block {
   padding: 5rem 5rem; }
 
 .site-footer {
-  text-align: center;
   color: #ededed; }
 
 .social-block {
@@ -141,6 +144,8 @@ canvas {
       color: #fff; }
 
 .github-block {
+  background: #ededed;
+  color: #111412;
   overflow: hidden; }
   .github-block-element-link {
     display: block; }
@@ -160,10 +165,6 @@ canvas {
     padding-bottom: 60%;
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     display: block; }
-  .github-block-element {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    max-height: 21rem; }
   .github-block-stats {
     white-space: nowrap; }
   .github-block-description {
@@ -173,13 +174,10 @@ canvas {
     margin-right: 0.1em; }
 
 .instagram-block {
-  color: #fff; }
+  background: #111412;
+  color: #ededed; }
   .instagram-block-element-link {
     display: block; }
-  .instagram-block a {
-    color: #ededed; }
-    .instagram-block a:hover {
-      color: #d4d4d4; }
   .instagram-block-description {
     padding-top: .618rem; }
   .instagram-block img {
@@ -187,6 +185,17 @@ canvas {
     border-radius: 2px;
     width: 100%;
     display: block; }
+
+.about-block {
+  color: #333;
+  background: #fff; }
+  .about-block-profile {
+    height: 16em;
+    width: 16em;
+    margin: 0 auto;
+    border: 4px solid #FFF;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
+    border-radius: 2px; }
 
 .content-block {
   padding: 10vmin 5vmin; }
@@ -201,29 +210,29 @@ canvas {
   body {
     font-size: 18px; }
   .content-block {
-    padding: 5rem 0 0 0; } }
+    padding: 5rem; } }
 
 @media screen and (max-width: 1440px) {
   body {
     font-size: 16px; }
   .content-block {
-    padding: 5rem 0 0 0; } }
+    padding: 5rem; } }
 
 @media screen and (max-width: 1024px) {
   body {
     font-size: 15px; }
   .content-block {
-    padding: 5rem 5rem 0; }
+    padding: 4rem; }
   .q-1 {
     width: 33.33%; }
   .hide-from-tablet {
     display: none; } }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
   body {
     font-size: 14px; }
   .content-block {
-    padding: 2rem 1rem 1rem; }
+    padding: 2rem 1rem 2rem; }
   .q-1 {
     width: 50%; }
   .hide-from-mobile {

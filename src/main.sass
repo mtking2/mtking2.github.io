@@ -1,4 +1,3 @@
-// @import "./styles/cute-reset"
 @import "styles/variables.sass"
 @import "styles/layout.sass"
 
@@ -51,12 +50,16 @@ canvas
     padding-top: 0.5rem
     font-size: 1.318em
     font-weight: $base-font-weight
+    a
+      color: $light-gray
+      &:hover
+        color: darken($light-gray, 25%)
 
 .content-block
   padding: 5rem 5rem
 
 .site-footer
-  text-align: center
+  // text-align: center
   color: $light-gray
 
 .social-block
@@ -74,7 +77,8 @@ canvas
       color: #fff
 
 .github-block
-  // background: $light-gray
+  background: $light-gray
+  color: $dark-color
   overflow: hidden
   &-element-link
     display: block
@@ -95,27 +99,26 @@ canvas
     box-shadow: $box-shadow
     display: block
   &-element
-    padding-top: 2rem
-    padding-bottom: 2rem
-    max-height: 21rem
+    // padding-top: 2rem
+    // padding-bottom: 2rem
+    // max-height: 21rem
   &-stats
     white-space: nowrap
   &-description
     max-height: 4rem
     margin-bottom: 5px
-    // overflow: scroll
   .icon-star
     margin-right: 0.1em
 
 .instagram-block
-  // background: $dark-color
-  color: #fff
+  background: $dark-color
+  color: $light-gray
   &-element-link
     display: block
-  a
-    color: $light-gray
-    &:hover
-      color: darken($light-gray, 10%)
+  // a
+  //   color: $light-gray
+  //   &:hover
+  //     color: darken($light-gray, 10%)
   &-description
     padding-top: .618rem
   img
@@ -123,6 +126,17 @@ canvas
     border-radius: $border-radius
     width: 100%
     display: block
+
+.about-block
+  color: #333
+  background: #fff
+  &-profile
+    height: 16em
+    width: 16em
+    margin: 0 auto
+    border: 4px solid #FFF
+    box-shadow: $box-shadow
+    border-radius: $border-radius
 
 .content
   &-block
@@ -138,34 +152,33 @@ canvas
   body
     font-size: $font-size + 2
   .content-block
-    padding: 5rem 0 0 0
+    padding: 5rem
 
 @media screen and (max-width: 1440px)
   body
     font-size: $font-size
   .content-block
-    padding: 5rem 0 0 0
+    padding: 5rem
 
 @media screen and (max-width: 1024px)
   body
     font-size: $font-size - 1
   .content-block
-    padding: 5rem 5rem 0
+    padding: 4rem
   .q-1
     width: 33.33%
   .hide-from-tablet
     display: none
 
-@media screen and (max-width: 640px)
+@media screen and (max-width: 768px)
   body
     font-size: $font-size - 2
   .content-block
-    padding: 2rem 1rem 1rem
+    padding: 2rem 1rem 2rem
   .q-1
     width: 50%
   .hide-from-mobile
     display: none
-
 
 
 ////////////////////////////////////////////////////

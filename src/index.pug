@@ -3,13 +3,17 @@ extends layout
 block content
   
   header#header.site-header.content-block.text-light
-    
+    canvas#headerCanvas
     div.padding-1x: div.content
       h1 Michael King
-      div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. <br> Linux is the way to go.
+      div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. <br> Linux is the way to go. 
+        a(href='http://distrowatch.com/') 
+          i.fa.fa-linux
       div.social-block
         a(href='https://github.com/mtking2/'): i.fa.fa-github
         a(href='https://twitter.com/thaadjarvis/'): i.fa.fa-twitter
+        a(href='https://www.linkedin.com/in/mtking2'): i.fa.fa-linkedin-square
+        a(href='http://steamcommunity.com/id/mtking2/'): i.fa.fa-steam-square
   
   div.github-block.content-block.text-dark
     div.content
@@ -38,11 +42,11 @@ block content
         | #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
       div.flex.flex-justify-center.flex-wrap.row
         each instagram, instagramIndex in instagramData
-          div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 2 ? 'hide-from-mobile' : '')
+          div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 4 ? 'hide-from-mobile' : '')
             a(href=instagram.link).instagram-block-element-link
               img(src=instagram.images.standard_resolution.url)
               //- div.instagram-block-description.cf
               //-   div.pull-left= instagram.caption.text
   
-  //- footer
-  //-   cool footer with lots of copyrights
+    //- footer.site-footer.content-block: div.content
+    //-   h3 Michael King
