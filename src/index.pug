@@ -22,7 +22,7 @@ block content
       div.row
         each github, githubIndex in githubData
           div.padding-1x.github-block-element(class=[githubIndex < 4 ? 'col-4' : 'col-4', githubIndex > 5 ? 'hide-from-tablet' : '', githubIndex > 3 ? 'hide-from-mobile' : ''])
-            a(href=github.html_url).github-block-element-link.github-block-thumbnail(style='background-image: url(https://raw.githubusercontent.com/mtking2/' + github.name + '/gh-pages/assets/thumbnail.png)')
+            a(href=github.html_url style='background-image: url(https://raw.githubusercontent.com/mtking2/' + github.name + '/gh-pages/assets/thumbnail.png)').github-block-element-link.github-block-thumbnail
             div.flex.flex-content-center.github-block-top
               a(href=github.html_url).flex-1
                 h4.github-block-title= github.name
@@ -43,7 +43,7 @@ block content
         each instagram, instagramIndex in instagramData
           div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 4 ? 'hide-from-mobile' : '')
             a(href=instagram.link).instagram-block-element-link
-              img(src=instagram.images.standard_resolution.url)
+              img(src=instagram.images.standard_resolution.url alt=instagram.caption || 'image')
               //- div.instagram-block-description.cf
               //-   div.pull-left= instagram.caption.text
   div.goodreads-block.text-dark.content-block: div.content
@@ -51,7 +51,7 @@ block content
     h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
     div.flex.flex-justify-center.flex-wrap.row
       each goodreads, goodreadsIndex in goodreadsData
-        div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 3 ? 'hide-from-tablet' : '', goodreadsIndex > 1 ? 'hide-from-mobile' : ''])
+        div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-tablet' : '', goodreadsIndex > 3 ? 'hide-from-mobile' : ''])
           a(href=goodreads.url).goodreads-block-element-link
             div.goodreads-block-element-thumbnail(style=`background-image: url(${goodreads.thumbnail})`)
             div.goodreads-block-element-status
@@ -59,8 +59,23 @@ block content
               if goodreads.status === 'read'
                 span.goodreads-block-element-stars
                 each star in new Array(goodreads.myRating)
-                  span.icon.icon-star
+                  span.fa.fa-star
             div=goodreads.title + ' -' + goodreads.author
   
-    //- footer.site-footer.content-block: div.content
-    //-   h3 Michael King
+  div.about-block.content-block: div.content
+    div.row.flex.flex-content-center.block-on-small
+      div.padding-1x.flex-1
+        h2 I'm Michael King
+        div Software Developer in Asheville, NC working at #[b: a(href='http://mwwondemand.com/') MWW, Inc.]. Otherwise, you'll occasionally find me doing astronmy, astrophotography, reading, or playing videogames.
+        br
+        div #[i Valar Morghulis]
+      div.padding-1x
+        img.about-block-profile(src='assets/me.jpg', alt='Michael King')
+
+  footer.dev-info
+    div.row
+      a(href='https://nodejs.org/') #[img(src='assets/nodejs-light.png' alt='nodejs')]
+      a(href='https://pugjs.org') #[img(src='assets/pug.svg' alt='pug')]
+      a(href='http://sass-lang.com/') #[img(src='assets/sass.svg' alt='sass')]
+      a(href='https://validator.w3.org/nu/check/referer') #[img(src='assets/valid-html5.png' alt='w3-validator' style="height: 2rem; margin-bottom: 2rem")]
+      

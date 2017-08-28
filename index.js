@@ -14,7 +14,7 @@ var dancingDotsIntance = new DancingDots({
   getOnlyInts: false,
   dotCount: 30,
   speed: 0.03,
-  height: 100,
+  height: 60,
   width: originalRatio
 })
 

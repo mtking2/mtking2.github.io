@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "compile": "npm run compilebabel && node compile.js",
+    "compile": "npm run compilebabel && node compile.js > log/compile.log 2>&1",
     "compilebabel": "rm -rf dist && mkdir -p dist && ./node_modules/.bin/browserify ./index.js > ./dist/index.js && ./node_modules/.bin/uglifyjs ./dist/index.js -o ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +21,7 @@
   "dependencies": {
     "async": "^1.4.2",
     "axios": "^0.15.3",
-    "pug": "^2.0.0-rc.2",
+    "pug": "^2.0.0-rc.3",
     "sass": "^1.0.0-beta.1",
     "node-sass": "^4.5.3",
     "browserify": "^13.0.0",

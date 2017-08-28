@@ -130,8 +130,16 @@ canvas {
 .content-block {
   padding: 5rem 5rem; }
 
-.site-footer {
-  color: #ededed; }
+.dev-info {
+  position: relative;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+  background: #000;
+  border-top: 0.25rem solid #222; }
+  .dev-info img {
+    margin: 1rem;
+    height: 4rem; }
 
 .social-block {
   margin-top: 1rem; }
@@ -222,13 +230,13 @@ canvas {
     border-radius: 2px; }
 
 .about-block {
-  color: #333;
-  background: #fff; }
+  color: #ededed;
+  background: #111412; }
   .about-block-profile {
     height: 16em;
     width: 16em;
     margin: 0 auto;
-    border: 4px solid #FFF;
+    border: 4px solid #333;
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     border-radius: 2px; }
 

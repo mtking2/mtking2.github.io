@@ -61,10 +61,10 @@ var requestInstagramData = function(cb) {
 var requestGoodreadsData = function(cb) {
   console.log('REQUEST: GOODREADS')
   axios
-    .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2')
+    .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&&sort=rating&per_page=200')
     .then(function(res) {
       console.log('RESPONSE: GOODREADS')
-
+      // console.log(res.data);
       let goodReadsXml = '\n' + res.data
       parseString(goodReadsXml, function(parseErr, result) {
         if (parseErr) {
@@ -79,15 +79,15 @@ var requestGoodreadsData = function(cb) {
               title: book.title[0],
               author: _.get(book, 'authors[0].author[0].name'),
               url: book.link[0],
-              thumbnail: book.large_image_url[0] || book.image_url[0] || book.small_image_url[0],
+              thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
               myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
               status: _.get(review, 'shelves[0].shelf[0].$.name'),
               date: new Date(review.date_updated[0])
             }
           })
-          .sortBy(book => {
-            return -book.date.getTime()
-          })
+          // .sortBy(book => {
+          //   return -book.date.getTime()
+          // })
           .sortBy(book => {
             const statusValue = {
               'currently-reading': 1,
@@ -96,7 +96,7 @@ var requestGoodreadsData = function(cb) {
 
             return statusValue[book.status] || 3
           })
-          .take(5)
+          .take(10)
           .value()
 
         cb(null, parsed)
