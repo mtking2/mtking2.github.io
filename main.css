@@ -293,7 +293,7 @@ a {
 
 @media screen and (max-width: 640px) {
   body {
-    font-size: 14px; }
+    font-size: 12px; }
   .q-1 {
     width: 50%; }
   .hide-from-mobile {
