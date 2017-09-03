@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "compile": "npm run compilebabel && node compile.js > log/compile.log 2>&1",
+    "compile": "npm run compilebabel && node compile.js | install -D /dev/stdin log/compile.log",
     "compilebabel": "rm -rf dist && mkdir -p dist && ./node_modules/.bin/browserify ./index.js > ./dist/index.js && ./node_modules/.bin/uglifyjs ./dist/index.js -o ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

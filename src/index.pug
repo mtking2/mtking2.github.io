@@ -66,16 +66,19 @@ block content
     div.row.flex-content-center.block-on-small
       div.padding-1x.flex-1
         h2 I'm Michael King
-        div Software Developer in Asheville, NC working at #[b: a(href='http://mwwondemand.com/') MWW, Inc.]. Otherwise, you'll occasionally find me doing astronmy, astrophotography, reading, or playing videogames.
+        div 
+          h5 Software Developer in Asheville, NC working at #[b: a(href='http://mwwondemand.com/') MWW, Inc.]. Otherwise, you'll occasionally find me doing astronmy, astrophotography, reading, or playing videogames.
         br
         div #[i Valar Morghulis]
       div.padding-1x
         img.about-block-profile(src='assets/me.jpg', alt='Michael King')
 
   footer.dev-info
-    div.row
+    div.row.flex-content-center
       a(href='https://nodejs.org/') #[img(src='assets/nodejs-light.png' alt='nodejs')]
       a(href='https://pugjs.org') #[img(src='assets/pug.svg' alt='pug')]
       a(href='http://sass-lang.com/') #[img(src='assets/sass.svg' alt='sass')]
       a(href='https://validator.w3.org/nu/check/referer') #[img(src='assets/valid-html5.png' alt='w3-validator' style="height: 2rem; margin-bottom: 2rem")]
-      
+    div.last-modified
+      script 
+        | document.write("Last modified: " + document.lastModified + "");  

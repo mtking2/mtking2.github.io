@@ -21,7 +21,7 @@ img {
 .padding-2x {
   padding: 2rem; }
 
-.row {
+.row .cf {
   margin: 0 -1rem; }
 
 .col-3, .col-4, .col-6 {
@@ -72,7 +72,7 @@ img {
 
 body {
   font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Helvetica", Arial, sans-serif;
   font-weight: 300;
   line-height: 1.618;
   background: #111412;
@@ -126,17 +126,6 @@ canvas {
       color: #ededed; }
       .site-header-subtitle a:hover {
         color: #adadad; }
-
-.dev-info {
-  position: relative;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  text-align: center;
-  background: #000;
-  border-top: 0.25rem solid #222; }
-  .dev-info img {
-    margin: 1rem;
-    height: 4rem; }
 
 .social-block {
   margin-top: 1rem; }
@@ -236,6 +225,19 @@ canvas {
     border: 4px solid #333;
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     border-radius: 2px; }
+
+footer.dev-info {
+  position: relative;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+  background: #000;
+  border-top: 0.25rem solid #222; }
+  footer.dev-info img {
+    margin: 1rem;
+    height: 4rem; }
+  footer.dev-info .last-modified {
+    color: grey; }
 
 .content-block {
   padding: 10vmin 5vmin; }
