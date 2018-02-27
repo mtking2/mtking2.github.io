@@ -28,7 +28,7 @@ var requestGithubData = function(cb) {
         .sortBy(function(el) {
           return -1 * el.stargazers_count
         })
-        .take(6)
+        .take(5)
         .value()
 
       cb(null, githubData)
