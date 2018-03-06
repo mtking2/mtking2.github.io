@@ -76,7 +76,7 @@ body {
   font-weight: 300;
   line-height: 1.618;
   background: #111412;
-  color: #ededed; }
+  color: #f9f8f4; }
 
 h1, .h1 {
   font-size: 4em;
@@ -117,13 +117,13 @@ canvas {
   left: 0; }
 
 .site-header {
-  color: #ededed; }
+  color: #f9f8f4; }
   .site-header-subtitle {
     padding-top: 0.5rem;
     font-size: 1.318em;
     font-weight: 300; }
     .site-header-subtitle a {
-      color: #ededed; }
+      color: #f9f8f4; }
       .site-header-subtitle a:hover {
         color: #adadad; }
 
@@ -142,7 +142,7 @@ canvas {
       color: #fff; }
 
 .github-block {
-  background: #ededed;
+  background: #f9f8f4;
   color: #111412;
   overflow: hidden; }
   .github-block-element-link {
@@ -173,7 +173,7 @@ canvas {
 
 .instagram-block {
   background: #111412;
-  color: #ededed; }
+  color: #f9f8f4; }
   .instagram-block-element-link {
     display: block; }
   .instagram-block-description {
@@ -216,7 +216,7 @@ canvas {
     border-radius: 2px; }
 
 .about-block {
-  color: #ededed;
+  color: #f9f8f4;
   background: #111412; }
   .about-block-profile {
     height: 16em;
