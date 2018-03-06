@@ -56,7 +56,7 @@ img {
   h1, .h1 {
     font-size: 3em; }
   .row {
-    margin: 0 -0.5rem; }
+    margin: 0 0rem; }
   .padding-1x {
     padding: 0.5rem; }
   .padding-2x {
@@ -225,6 +225,8 @@ canvas {
     border: 4px solid #333;
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     border-radius: 2px; }
+  .about-block .quote {
+    color: #444; }
 
 footer.dev-info {
   position: relative;
@@ -237,7 +239,8 @@ footer.dev-info {
     margin: 1rem;
     height: 4rem; }
   footer.dev-info .last-modified {
-    color: grey; }
+    color: #333;
+    font-family: monospace; }
 
 .content-block {
   padding: 10vmin 5vmin; }
