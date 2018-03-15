@@ -149,6 +149,8 @@ canvas {
     display: block; }
   .github-block-title {
     font-weight: 400;
+    height: 1.5rem;
+    overflow: hidden;
     min-width: 0; }
     .github-block-title:hover {
       text-decoration: underline; }
@@ -166,7 +168,7 @@ canvas {
   .github-block-stats {
     white-space: nowrap; }
   .github-block-description {
-    max-height: 4rem;
+    height: 4rem;
     margin-bottom: 5px; }
   .github-block .icon-star {
     margin-right: 0.1em; }
