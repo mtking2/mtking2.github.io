@@ -50,9 +50,11 @@ var requestInstagramData = function(cb) {
         // .sortBy(function(el, index) {
         //   return -1 * el.likes.count + index * 1.5
         // })
-        // .filter({ type: 'image',})
-        .take(12)
-        .value()
+        .filter((post) => {
+          if (post.type == 'image' || post.type == 'carousel') {
+            return post
+          }
+        }).take(12).value()
 
       cb(null, instagramGeneralData)
     })

@@ -12,8 +12,8 @@ const originalRatio = Math.round(headerSizes.width / headerSizes.height * 100)
 
 var dancingDotsIntance = new DancingDots({
   getOnlyInts: false,
-  dotCount: 50,
-  speed: 0.03,
+  dotCount: 30,
+  speed: 0.02,
   height: 100,
   width: originalRatio
 })
@@ -57,7 +57,7 @@ function draw() {
 
   for (var i = triangles.length; i; ) {
     ctx.beginPath()
-    ctx.strokeStyle = '#555'
+    ctx.strokeStyle = '#333'
     --i
     ctx.moveTo(dots[triangles[i]][0], dots[triangles[i]][1])
     --i
@@ -75,7 +75,7 @@ function draw() {
   function drawCircle(x, y, intensity) {
     ctx.beginPath()
     ctx.arc(x, y, 3, 0, 2 * Math.PI, false)
-    ctx.fillStyle = '#555'
+    ctx.fillStyle = '#333'
     ctx.fill()
   }
 
