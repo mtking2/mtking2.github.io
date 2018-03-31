@@ -66,7 +66,7 @@ var requestGoodreadsData = function(cb) {
     .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&&sort=rating&per_page=200')
     .then(function(res) {
       console.log('RESPONSE: GOODREADS')
-      // console.log(res.data);
+      console.log(res.data);
       let goodReadsXml = '\n' + res.data
       parseString(goodReadsXml, function(parseErr, result) {
         if (parseErr) {
@@ -87,9 +87,9 @@ var requestGoodreadsData = function(cb) {
               date: new Date(review.date_updated[0])
             }
           })
-          // .sortBy(book => {
-          //   return -book.date.getTime()
-          // })
+          .sortBy(book => {
+            return -book.date.getTime()
+          })
           .sortBy(book => {
             const statusValue = {
               'currently-reading': 1,
@@ -100,6 +100,8 @@ var requestGoodreadsData = function(cb) {
           })
           .take(10)
           .value()
+
+          // console.log(parsed)
 
         cb(null, parsed)
       })
