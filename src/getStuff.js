@@ -28,7 +28,7 @@ var requestGithubData = function(cb) {
         .sortBy(function(el) {
           return -1 * el.stargazers_count
         })
-        .take(5)
+        .take(6)
         .value()
 
       cb(null, githubData)
@@ -66,7 +66,7 @@ var requestGoodreadsData = function(cb) {
     .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&&sort=rating&per_page=200')
     .then(function(res) {
       console.log('RESPONSE: GOODREADS')
-      console.log(res.data);
+      // console.log(res.data);
       let goodReadsXml = '\n' + res.data
       parseString(goodReadsXml, function(parseErr, result) {
         if (parseErr) {
