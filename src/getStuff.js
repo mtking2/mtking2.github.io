@@ -63,7 +63,7 @@ var requestInstagramData = function(cb) {
 var requestGoodreadsData = function(cb) {
   console.log('REQUEST: GOODREADS')
   axios
-    .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&&sort=rating&per_page=200')
+    .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&&sort=date_read&per_page=200')
     .then(function(res) {
       console.log('RESPONSE: GOODREADS')
       // console.log(res.data);
@@ -87,9 +87,9 @@ var requestGoodreadsData = function(cb) {
               date: new Date(review.date_updated[0])
             }
           })
-          .sortBy(book => {
-            return -book.date.getTime()
-          })
+          // .sortBy(book => {
+          //   return -book.date.getTime()
+          // })
           .sortBy(book => {
             const statusValue = {
               'currently-reading': 1,
