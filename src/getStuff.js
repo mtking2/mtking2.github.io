@@ -61,11 +61,46 @@ var requestInstagramData = function(cb) {
 }
 
 var requestGoodreadsData = function(cb) {
-  console.log('REQUEST: GOODREADS')
-  axios
-    .get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&&sort=date_read&per_page=200')
+  console.log('REQUEST: GOODREADS CR')
+  var books = []
+  var reading_count;
+  axios.get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&sort=date_read&shelf=currently-reading&per_page=10')
+  .then(function(res) {
+    console.log('RESPONSE: GOODREADS CR')
+    // console.log(res.data);
+    let goodReadsXml = '\n' + res.data
+    parseString(goodReadsXml, function(parseErr, result) {
+      if (parseErr) {
+        return cb(parseErr)
+      }
+
+      var reading = _.chain(result.GoodreadsResponse.reviews[0].review).map(review => {
+        var book = review.book[0]
+
+        return {
+          title: book.title[0],
+          author: _.get(book, 'authors[0].author[0].name'),
+          isbn13: book.isbn13[0],
+          url: book.link[0],
+          thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
+          myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
+          status: _.get(review, 'shelves[0].shelf[0].$.name'),
+          date: new Date(review.read_at[0])
+        }
+      }).sortBy(book => {
+        return -book.date.getTime()
+      }).value()
+
+      reading.forEach((e) => { books.push(e) })
+      reading_count = reading.length
+      // console.log(books)
+      // cb(null, books)
+    })
+  }).then((res) => {
+    console.log('REQUEST: GOODREADS READ')
+    axios.get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&sort=date_read&shelf=read&per_page=100')
     .then(function(res) {
-      console.log('RESPONSE: GOODREADS')
+      console.log('RESPONSE: GOODREADS READ')
       // console.log(res.data);
       let goodReadsXml = '\n' + res.data
       parseString(goodReadsXml, function(parseErr, result) {
@@ -73,42 +108,37 @@ var requestGoodreadsData = function(cb) {
           return cb(parseErr)
         }
 
-        var parsed = _.chain(result.GoodreadsResponse.reviews[0].review)
-          .map(review => {
-            var book = review.book[0]
+        var read = _.chain(result.GoodreadsResponse.reviews[0].review).map(review => {
+          var book = review.book[0]
 
-            return {
-              title: book.title[0],
-              author: _.get(book, 'authors[0].author[0].name'),
-              url: book.link[0],
-              thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
-              myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
-              status: _.get(review, 'shelves[0].shelf[0].$.name'),
-              date: new Date(review.date_updated[0])
-            }
-          })
-          // .sortBy(book => {
-          //   return -book.date.getTime()
-          // })
-          .sortBy(book => {
-            const statusValue = {
-              'currently-reading': 1,
-              read: 2
-            }
+          return {
+            title: book.title[0],
+            author: _.get(book, 'authors[0].author[0].name'),
+            isbn13: book.isbn13[0],
+            url: book.link[0],
+            thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
+            myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
+            status: _.get(review, 'shelves[0].shelf[0].$.name'),
+            date: new Date(review.read_at[0])
+          }
+        }).take(10 - reading_count).value()
 
-            return statusValue[book.status] || 3
-          })
-          .take(10)
-          .value()
+        read.forEach((e) => { books.push(e) })
+        // console.log(books)
 
-          // console.log(parsed)
+        // broken image fix for isbn13 9781491901427
+        books.find((b) => {
+          return b.isbn13 === '9781491901427'
+        }).thumbnail = 'https://images.gr-assets.com/books/1441160483l/25445846.jpg'
 
-        cb(null, parsed)
+        cb(null, books)
       })
-    })
-    .catch(function(e) {
+    }).catch(function(e) {
       console.error(e)
     })
+  }).catch(function(e) {
+    console.error(e)
+  })
 }
 
 module.exports = function(cb) {
