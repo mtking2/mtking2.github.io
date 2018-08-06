@@ -84,8 +84,8 @@ var requestGoodreadsData = function(cb) {
           url: book.link[0],
           thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
           myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
-          status: _.get(review, 'shelves[0].shelf[0].$.name'),
-          date: new Date(review.read_at[0])
+          status: 'currently-reading', // _.get(review, 'shelves[0].shelf[0].$.name'),
+          date: new Date(review.date_updated[0])
         }
       }).sortBy(book => {
         return -book.date.getTime()
@@ -126,10 +126,13 @@ var requestGoodreadsData = function(cb) {
         read.forEach((e) => { books.push(e) })
         // console.log(books)
 
-        // broken image fix for isbn13 9781491901427
+        // broken image fix
         books.find((b) => {
           return b.isbn13 === '9781491901427'
         }).thumbnail = 'https://images.gr-assets.com/books/1441160483l/25445846.jpg'
+        books.find((b) => {
+          return b.isbn13 === '9780465007806'
+        }).thumbnail = 'https://images.gr-assets.com/books/1389237768l/33279.jpg'
 
         cb(null, books)
       })
