@@ -133,6 +133,10 @@ var requestGoodreadsData = function(cb) {
         books.find((b) => {
           return b.isbn13 === '9780465007806'
         }).thumbnail = 'https://images.gr-assets.com/books/1389237768l/33279.jpg'
+        books.find((b) => {
+          return b.isbn13 === '9780061767647'
+        }).thumbnail = 'https://images.gr-assets.com/books/1348718213l/6715623.jpg'
+
 
         cb(null, books)
       })
