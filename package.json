@@ -29,7 +29,7 @@
     "delaunay-fast": "^1.0.1",
     "dotenv": "^1.2.0",
     "lodash": "^3.10.1",
-    "superagent": "^1.4.0",
+    "superagent": "^3.7.0",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
