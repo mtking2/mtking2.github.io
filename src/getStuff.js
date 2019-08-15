@@ -73,16 +73,16 @@ var requestGoodreadsData = function(cb) {
       if (parseErr) {
         return cb(parseErr)
       }
-
+      
       var reading = _.chain(result.GoodreadsResponse.reviews[0].review).map(review => {
         var book = review.book[0]
-
+        // console.log(book)
         return {
           title: book.title[0],
           author: _.get(book, 'authors[0].author[0].name'),
           isbn13: book.isbn13[0],
           url: book.link[0],
-          thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
+          thumbnail: book.large_image_url[0] || book.image_url[0].replace(/\._.*_\./, '.') || book.image_url[0] || book.small_image_url[0],
           myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
           status: 'currently-reading', // _.get(review, 'shelves[0].shelf[0].$.name'),
           date: new Date(review.date_updated[0])
@@ -116,7 +116,7 @@ var requestGoodreadsData = function(cb) {
             author: _.get(book, 'authors[0].author[0].name'),
             isbn13: book.isbn13[0],
             url: book.link[0],
-            thumbnail: book.large_image_url[0] || book.image_url[0].replace(/m([^m]*)$/,'l'+'$1') || book.image_url[0] || book.small_image_url[0],
+            thumbnail: book.large_image_url[0] || book.image_url[0].replace(/\._.*_\./, '.') || book.image_url[0] || book.small_image_url[0],
             myRating: review.rating[0] ? parseInt(review.rating[0], 10) : null,
             status: _.get(review, 'shelves[0].shelf[0].$.name'),
             date: new Date(review.read_at[0])
@@ -133,9 +133,9 @@ var requestGoodreadsData = function(cb) {
         books.find((b) => {
           return b.isbn13 === '9780465007806'
         }).thumbnail = 'https://images.gr-assets.com/books/1389237768l/33279.jpg'
-        books.find((b) => {
-          return b.isbn13 === '9780061767647'
-        }).thumbnail = 'https://images.gr-assets.com/books/1348718213l/6715623.jpg'
+        // books.find((b) => {
+        //   return b.isbn13 === '9780061767647'
+        // }).thumbnail = 'https://images.gr-assets.com/books/1348718213l/6715623.jpg'
 
 
         cb(null, books)
