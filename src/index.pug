@@ -23,7 +23,8 @@ block content
       div.row
         each github, githubIndex in githubData
           div.padding-1x.github-block-element(class=[githubIndex < 4 ? 'col-4' : 'col-4', githubIndex > 5 ? 'hide-from-tablet' : '', githubIndex > 3 ? 'hide-from-mobile' : ''])
-            a(href=github.html_url style='background-image: url(https://raw.githubusercontent.com/mtking2/' + github.name + '/gh-pages/assets/thumbnail.png)').github-block-element-link.github-block-thumbnail
+            - var github_url = ['rubiks-gl'].includes(github.name) ? github.homepage : github.html_url
+            a(href=github_url style='background-image: url(https://raw.githubusercontent.com/mtking2/' + github.name + '/gh-pages/assets/thumbnail.png)').github-block-element-link.github-block-thumbnail
             div.flex.flex-content-center.github-block-top
               a(href=github.html_url).flex-1
                 h4.github-block-title= github.name
