@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  
+
   header#header.site-header.content-block.text-light
     canvas#headerCanvas
     div.padding-1x: div.content
       h1 Michael King
       div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. <br> Linux is the way to go. 
-        a(href='http://distrowatch.com/') 
+        a(href='http://distrowatch.com/')
           i.fab.fa-linux
       div.social-block
         a(href='https://github.com/mtking2' target='_blank'): i.fab.fa-github
@@ -15,7 +15,7 @@ block content
         a(href='https://www.linkedin.com/in/mtking2' target='_blank'): i.fab.fa-linkedin
         a(href='http://steamcommunity.com/id/mtking2' target='_blank'): i.fab.fa-steam
         a(href='assets/mking_resume.pdf' target='_blank'): i.fa.fa-file-invoice
-  
+
   div.github-block.content-block.text-dark
     div.content
       h2 I code stuff
@@ -35,7 +35,7 @@ block content
             div.github-block-description= github.description
             div.button-container
               //- a(href=github.html_url).button.-invisible-dark Open repo
-          
+
   div.instagram-block.text-light.content-block
     div.content
       h2 I take pictures of stuff
@@ -62,15 +62,15 @@ block content
                 each star in new Array(goodreads.myRating)
                   span.fa.fa-star
             div=goodreads.title + ' -' + goodreads.author
-  
+
   div.about-block.content-block: div.content
     div.row.flex-content-center.block-on-small
       div.padding-1x.flex-1
         h2 I'm Michael King
-        div 
-          h5 Software Developer in Asheville, NC working at #[b: a(href='http://mwwondemand.com/') MWW, Inc.]. Otherwise, you'll occasionally find me doing astronmy, astrophotography, reading, or playing videogames.
+        div
+          h5 Software Developer in Asheville, NC working at #[b: a(href='http://mwwondemand.com/') MWW, Inc.]. Otherwise, you'll occasionally find me doing astronomy, astrophotography, 3D printing things, reading, or playing videogames.
         br
-        div.quote #[i Valar Morghulis]
+        div.quote #[i This is the way]
       div.padding-1x
         img.about-block-profile(src='assets/me.jpg', alt='Michael King')
 
@@ -81,5 +81,5 @@ block content
       a(href='http://sass-lang.com/') #[img(src='assets/sass.svg' alt='sass')]
       a(href='https://validator.w3.org/nu/check/referer') #[img(src='assets/valid-html5.png' alt='w3-validator' style="height: 2rem; margin-bottom: 2rem")]
     div.last-modified
-      script 
-        | document.write("Last modified: " + document.lastModified + "");  
+      script
+        | document.write("Last modified: " + document.lastModified + "");

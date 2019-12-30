@@ -74,7 +74,7 @@ var requestGoodreadsData = function(cb) {
       if (parseErr) {
         return cb(parseErr)
       }
-      
+
       var reading = _.chain(result.GoodreadsResponse.reviews[0].review).map(review => {
         var book = review.book[0]
         // console.log(book)
@@ -128,9 +128,9 @@ var requestGoodreadsData = function(cb) {
         // console.log(books)
 
         // broken image fix
-        books.find((b) => {
-          return b.isbn13 === '9781491901427'
-        }).thumbnail = 'https://images.gr-assets.com/books/1441160483l/25445846.jpg'
+        // books.find((b) => {
+        //   return b.isbn13 === '9781491901427'
+        // }).thumbnail = 'https://images.gr-assets.com/books/1441160483l/25445846.jpg'
         books.find((b) => {
           return b.isbn13 === '9780465007806'
         }).thumbnail = 'https://images.gr-assets.com/books/1389237768l/33279.jpg'
