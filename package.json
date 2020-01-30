@@ -4,8 +4,9 @@
   "description": "",
   "main": "",
   "scripts": {
-    "compile": "npm run compilebabel && node compile.js 2>&1 | tee log/compile.log",
-    "compilebabel": "rm -rf dist && mkdir -p dist && ./node_modules/.bin/browserify ./index.js > ./dist/index.js && ./node_modules/.bin/uglifyjs ./dist/index.js -o ./dist/index.js",
+    "compile": "npm run precompile && node compile.js 2>&1 | tee log/compile.log",
+    "precompile": "rm -rf dist && mkdir -p dist && ./node_modules/.bin/browserify ./index.js > ./dist/index.js && ./node_modules/.bin/uglifyjs ./dist/index.js -o ./dist/index.js",
+    "watch": "nodemon -e js,sass,pug -i dist -x \"npm run compile\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,16 +27,14 @@
     "delaunay-fast": "^1.0.1",
     "dotenv": "^1.2.0",
     "lodash": "^4.17.15",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "pug": "^2.0.3",
     "sass": "^1.0.0-beta.1",
     "superagent": "^5.1.0",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
-    "babel-cli": "^6.5.0",
-    "babel-preset-es2015": "^6.5.0",
-    "standard": "^13.1.0",
+    "nodemon": "^2.0.2",
     "uglify-js": "^2.6.1"
   }
 }
