@@ -19,18 +19,17 @@ getStuff(function(err, stuff) {
     console.log('CREATE FILE: INDEX.HTML')
   });
 
-  var sassSrc = 'src/main.sass'
+  var sassSrc = 'src/styles/main.sass'
   sass.render({
     file: sassSrc,
     outFile: "main.css",
   }, function(error, result) { // node-style callback from v3.0.0 onwards
-    if(!error){
-      // No errors during the compilation, write this result on the disk
-      fs.writeFile("main.css", result.css, function(err){
-        if(!err){
-          console.log('CREATE FILE: MAIN.CSS')
-        }
-      });
-    }
+    if (error) return console.error(error)
+    
+    // No errors during the compilation, write this result on the disk
+    fs.writeFile("main.css", result.css, function(err){
+      if (err) return console.error(err)
+      console.log('CREATE FILE: MAIN.CSS')
+    });
   });
 });
