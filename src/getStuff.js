@@ -149,8 +149,53 @@ var requestGoodreadsData = function(cb) {
   })
 }
 
+
+var requestLetterboxdData = function(cb) {
+  console.log('REQUEST: Letterboxd')
+  let films = [];
+  axios.get('https://letterboxd.com/mtking2/rss')
+  .then(function(resp) {
+    console.log('RESPONSE: Letterboxd')
+    // console.log(resp.data)
+
+    let letterboxdXml = '\n' + resp.data
+    parseString(letterboxdXml, function(parseErr, result) {
+      if (parseErr) {
+        return cb(parseErr)
+      }
+
+      let data = result.rss.channel[0];
+      data.item.filter( (m) => {
+        return m.guid[0]['_'].includes('letterboxd-watch')
+      }).forEach( (movie) => {
+        films.push({
+          title: movie['letterboxd:filmTitle'][0],
+          guid: movie.guid[0]['_'],
+          link: movie.link[0].replace('mtking2/',''),
+          watch_date: movie['letterboxd:watchedDate'][0],
+          rewatch: movie['letterboxd:rewatch'][0],
+          rating: movie['letterboxd:memberRating'][0],
+          image_url: /src=\"(.*)\"/gm.exec(movie.description[0])[1]
+        })
+      });
+
+      var letterboxdData = _(films)
+        .sortBy(function(m) {
+          return -1 * Date.parse(m.watch_date)
+        })
+        .take(15)
+        .value()
+
+      // console.log(letterboxdData)
+      cb(null, letterboxdData)
+    })
+  }).catch(function(e) {
+    console.error(e)
+  })
+}
+
 module.exports = function(cb) {
-  async.parallel([requestGithubData, requestInstagramData, requestGoodreadsData], function(
+  async.parallel([requestGithubData, requestInstagramData, requestGoodreadsData, requestLetterboxdData], function(
     err,
     results
   ) {
@@ -159,7 +204,8 @@ module.exports = function(cb) {
     cb(null, {
       githubData: results[0],
       instagramData: results[1],
-      goodreadsData: results[2]
+      goodreadsData: results[2],
+      letterboxdData: results[3]
     })
   })
 }
