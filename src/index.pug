@@ -43,7 +43,7 @@ block content
       h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
       div.flex.flex-justify-center.flex-wrap.row
         each instagram, instagramIndex in instagramData
-          div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 4 ? 'hide-from-mobile' : '')
+          div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 5 ? 'hide-from-mobile' : '')
             a(href=instagram.link).instagram-block-element-link
               if instagram.type === 'carousel'
                 - var insta_url = instagram.carousel_media.filter( (e) => { return e.type === 'image' } )[0].images.standard_resolution.url              
@@ -68,8 +68,27 @@ block content
                 each star in new Array(goodreads.myRating)
                   span.fa.fa-star
             div=goodreads.title + ' -' + goodreads.author
+  
+  div.letterboxd-block.text-dark.content-block
+    div.content
+      h2 I watch movies
+      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd.
+      div.flex.flex-justify-center.flex-wrap.row
+        each film, filmIndex in letterboxdData
+          div.q-1.padding-1x.letterboxd-block-element(class=filmIndex > 5 ? 'hide-from-mobile' : '')
+            a(href=film.link target='_blank').letterboxd-block-element-link
+              //-img(src=film.image_url alt=film.title || 'image')
+              div.letterboxd-block-element-thumbnail(style=`background-image: url(${film.image_url})`)
+              div.letterboxd-block-element-status
+                span=film.watch_date
+                span.letterboxd-block-element-stars
+                  each star in new Array(parseInt(film.rating, 10))
+                    span.fa.fa-star
+                  if film.rating % Math.floor(film.rating)
+                    span.fa.fa-star-half
+              div=film.title
 
-  div.about-block.content-block: div.content
+  div.about-block.text-light.content-block: div.content
     div.row.flex-content-center.block-on-small
       div.padding-1x.flex-1
         h2 I'm Michael King
@@ -81,6 +100,7 @@ block content
         img.about-block-profile(src='assets/me.jpg', alt='Michael King')
 
   footer.dev-info
+    hr
     div.row.flex-content-center
       a(href='https://nodejs.org/') #[img(src='assets/nodejs-light.png' alt='nodejs')]
       a(href='https://pugjs.org') #[img(src='assets/pug.svg' alt='pug')]

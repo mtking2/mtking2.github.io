@@ -50,7 +50,7 @@ img {
   #body {
     font-size: 15px; }
   .col-3 {
-    width: 50%; }
+    width: 33%; }
   .col-4 {
     width: 50%; } }
 
@@ -68,7 +68,7 @@ img {
   .col-6 {
     width: 100%; }
   .col-3 {
-    width: 100%; }
+    width: 50%; }
   .col-4 {
     width: 100%; }
   .block-on-small {
@@ -221,9 +221,52 @@ canvas {
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     border-radius: 2px; }
 
+.letterboxd-block {
+  background: #141414;
+  color: #f9f8f4; }
+  .letterboxd-block a {
+    color: #bbb; }
+    .letterboxd-block a:hover {
+      color: #d5d5d5; }
+  .letterboxd-block-element-status {
+    border: 1px solid #3f3f3f;
+    background: #252525;
+    text-transform: uppercase;
+    color: #ddd;
+    line-height: 1;
+    padding: 0.4rem 0.4rem 0.3rem;
+    font-size: 0.75em;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    display: inline-block; }
+  .letterboxd-block-element-stars {
+    margin-left: 0.5rem;
+    color: #00fa5e; }
+  .letterboxd-block-element-link {
+    display: block; }
+  .letterboxd-block-element-thumbnail {
+    width: 100%;
+    height: 0;
+    padding-bottom: 155%;
+    background-color: #252525;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin-bottom: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
+    border-radius: 2px; }
+  .letterboxd-block-description {
+    padding-top: .618rem; }
+  .letterboxd-block img {
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
+    border-radius: 2px;
+    width: 100%;
+    display: block; }
+
 .about-block {
   color: #f9f8f4;
-  background: #141414; }
+  background: #000; }
   .about-block-profile {
     height: 16em;
     width: 16em;
@@ -241,8 +284,13 @@ footer.dev-info {
   padding-top: 5rem;
   padding-bottom: 5rem;
   text-align: center;
-  background: #000;
-  border-top: 0.25rem solid #222; }
+  background: #000; }
+  footer.dev-info hr {
+    background-color: #333;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 0 auto 4rem auto;
+    width: 90vw; }
   footer.dev-info img {
     margin: 1rem;
     height: 3rem; }
