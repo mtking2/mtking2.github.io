@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "npm run precompile && node compile.js 2>&1 | tee log/compile.log",
     "precompile": "rm -rf dist && mkdir -p dist && ./node_modules/.bin/browserify ./index.js > ./dist/index.js && ./node_modules/.bin/uglifyjs ./dist/index.js -o ./dist/index.js",
-    "watch": "nodemon -e js,sass,pug -i dist -x \"npm run compile\"",
+    "watch": "nodemon -e js,sass,pug -i dist -x \"npm run compile && http-server -c-1\"",
+    "start": "npm run watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,22 +20,21 @@
     "url": "https://github.com/mtking2/mtking2.github.io.git/issues"
   },
   "homepage": "https://github.com/mtking2/mtking2.github.io.git#readme",
-  "dependencies": {
+  "devDependencies": {
     "async": "^1.4.2",
     "axios": "^0.18.1",
     "browserify": "^13.0.0",
     "dancing-dots": "0.0.2",
     "delaunay-fast": "^1.0.1",
     "dotenv": "^1.2.0",
+    "http-server": "^0.12.1",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2",
     "pug": "^2.0.3",
     "sass": "^1.0.0-beta.1",
     "superagent": "^5.1.0",
+    "uglify-js": "^2.6.1",
     "xml2js": "^0.4.17"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.2",
-    "uglify-js": "^2.6.1"
   }
 }
