@@ -224,10 +224,6 @@ canvas {
 .letterboxd-block {
   background: #141414;
   color: #f9f8f4; }
-  .letterboxd-block a {
-    color: #bbb; }
-    .letterboxd-block a:hover {
-      color: #d5d5d5; }
   .letterboxd-block-element-status {
     border: 1px solid #3f3f3f;
     background: #252525;
@@ -244,7 +240,10 @@ canvas {
     margin-left: 0.5rem;
     color: #00fa5e; }
   .letterboxd-block-element-link {
-    display: block; }
+    display: block;
+    color: #bbb; }
+    .letterboxd-block-element-link:hover {
+      color: #d5d5d5; }
   .letterboxd-block-element-thumbnail {
     width: 100%;
     height: 0;
