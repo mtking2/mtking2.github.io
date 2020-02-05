@@ -39,7 +39,7 @@ block content
 
   div.instagram-block.text-light.content-block
     div.content
-      h2 I take pictures of stuff
+      h2 I take pictures
       h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
       div.flex.flex-justify-center.flex-wrap.row
         each instagram, instagramIndex in instagramData
@@ -53,7 +53,7 @@ block content
               //- div.instagram-block-description.cf
               //-   div.pull-left= instagram.caption.text
   div.goodreads-block.text-dark.content-block: div.content
-    h2 I read stuff
+    h2 I read books
     h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
       small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
     div.flex.flex-justify-center.flex-wrap.row
@@ -72,7 +72,8 @@ block content
   div.letterboxd-block.text-dark.content-block
     div.content
       h2 I watch movies
-      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd.
+      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd. 
+        span.letterboxd-block-element-note #[span.fa.fa-sync-alt] = rewatch
       div.flex.flex-justify-center.flex-wrap.row
         each film, filmIndex in letterboxdData
           div.q-1.padding-1x.letterboxd-block-element(class=filmIndex > 5 ? 'hide-from-mobile' : '')
@@ -81,6 +82,9 @@ block content
               div.letterboxd-block-element-thumbnail(style=`background-image: url(${film.image_url})`)
               div.letterboxd-block-element-status
                 span=film.watch_date
+                if film.rewatch === 'Yes'
+                  span.letterboxd-block-element-rewatch
+                    span.fa.fa-sync-alt
                 span.letterboxd-block-element-stars
                   each star in new Array(parseInt(film.rating, 10))
                     span.fa.fa-star
@@ -91,7 +95,7 @@ block content
   div.about-block.text-light.content-block: div.content
     div.row.flex-content-center.block-on-small
       div.padding-1x.flex-1
-        h2 I'm Michael King
+        h2 I am Michael King
         div
           h5 Software Developer in Asheville, NC working at #[b: a(href='http://mwwondemand.com/') MWW, Inc.]. Otherwise, you'll occasionally find me doing astronomy, astrophotography, 3D printing things, reading, or playing videogames.
         br

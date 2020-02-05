@@ -171,7 +171,7 @@ var requestLetterboxdData = function(cb) {
         films.push({
           title: movie['letterboxd:filmTitle'][0],
           guid: movie.guid[0]['_'],
-          link: movie.link[0].replace('mtking2/',''),
+          link: movie.link[0].replace('mtking2/','').replace(/\/\d*\/$/,''),
           watch_date: movie['letterboxd:watchedDate'][0],
           rewatch: movie['letterboxd:rewatch'][0],
           rating: movie['letterboxd:memberRating'][0],
