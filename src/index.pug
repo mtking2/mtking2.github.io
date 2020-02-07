@@ -58,9 +58,13 @@ block content
     h2 I read books
     h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
       small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
+        //- span.goodreads-block-element-note #[span.notification-badge.notification-badge-left] = new notes
     div.flex.flex-justify-center.flex-wrap.row
       each goodreads, goodreadsIndex in goodreadsData
         div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-tablet' : '', goodreadsIndex > 3 ? 'hide-from-mobile' : ''])
+          if goodreads.hasNewNotes
+            a(class='rn-link' href=`reading-notes/books/${goodreads.isbn13}.html` target='_blank')
+              span.notification-badge.notification-badge-book
           a(href=goodreads.url).goodreads-block-element-link
             div.goodreads-block-element-thumbnail(style=`background-image: url(${goodreads.thumbnail})`)
             div.goodreads-block-element-status

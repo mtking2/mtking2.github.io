@@ -2,11 +2,12 @@
 
 require('dotenv').load()
 
-var async = require('async')
-var request = require('superagent')
-var _ = require('lodash')
+const async = require('async')
+const request = require('superagent')
+const _ = require('lodash')
 const axios = require('axios')
 const parseString = require('xml2js').parseString
+const fm = require('front-matter');
 
 var requestGithubData = function(cb) {
   console.log('REQUEST: GITHUB')
@@ -59,12 +60,33 @@ var requestInstagramData = function(cb) {
     })
 }
 
-var requestGoodreadsData = function(cb) {
+function getReadingNotesData(isbn) {
+  return new Promise(function(resolve, reject) {
+    if (!isbn) return resolve()
+
+    let rnURL = `https://raw.githubusercontent.com/mtking2/reading-notes/master/src/books/${isbn}.md`
+    request.get(rnURL).end( (err, resp) => {
+      if (err && resp.status !== 404) return reject();
+
+      // console.log(resp.status)
+      if (resp.status < 400) {
+        // console.log(resp.text)
+        let rnData = fm(resp.text).attributes;
+        // console.log(rnData)
+        resolve(rnData)
+      }
+
+      return resolve({})
+    });
+  });
+}
+
+var requestGoodreadsData = async function(cb) {
   console.log('REQUEST: GOODREADS CR')
   var books = []
   var reading_count;
   axios.get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&sort=date_read&shelf=currently-reading&per_page=10')
-  .then(function(res) {
+  .then(async (res) => {
     console.log('RESPONSE: GOODREADS CR')
     // console.log(res.data);
     let goodReadsXml = '\n' + res.data
@@ -76,6 +98,7 @@ var requestGoodreadsData = function(cb) {
       var reading = _.chain(result.GoodreadsResponse.reviews[0].review).map(review => {
         var book = review.book[0]
         // console.log(book)
+
         return {
           title: book.title[0],
           author: _.get(book, 'authors[0].author[0].name'),
@@ -93,9 +116,8 @@ var requestGoodreadsData = function(cb) {
       reading.forEach((e) => { books.push(e) })
       reading_count = reading.length
       // console.log(books)
-      // cb(null, books)
     })
-  }).then((res) => {
+  }).then( async (res) => {
     console.log('REQUEST: GOODREADS READ')
     axios.get('https://www.goodreads.com/review/list/69517269.xml?key=' + process.env.GOODREADS_KEY + '&v=2&sort=date_read&shelf=read&per_page=100')
     .then(function(res) {
@@ -136,9 +158,22 @@ var requestGoodreadsData = function(cb) {
         //   return b.isbn13 === '9780061767647'
         // }).thumbnail = 'https://images.gr-assets.com/books/1348718213l/6715623.jpg'
 
-
-        cb(null, books)
+        // console.log(books)
+        // cb(null, books)
       })
+    }).then( async (res) => {
+      for (let i in books) {
+        let book = books[i];
+        if (book.status === 'currently-reading') {
+          let readingNotesData = await getReadingNotesData(book.isbn13)
+          // console.log(readingNotesData)
+          let date = new Date(new Date().setHours(0,0,0,0))
+          let hasNewNotes = new Date(readingNotesData.updated) > date.setDate(date.getDate() - 30)
+          book.hasNewNotes = hasNewNotes;
+        }
+      }
+      // console.log(books)
+      cb(null, books)
     }).catch(function(e) {
       console.error(e)
     })

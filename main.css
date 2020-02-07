@@ -220,6 +220,39 @@ canvas {
     margin-bottom: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     border-radius: 2px; }
+  .goodreads-block-element-note {
+    margin-left: 1.5rem;
+    font-size: 14px; }
+    .goodreads-block-element-note .notification-badge {
+      width: 0.8rem !important;
+      height: 0.8rem !important; }
+  .goodreads-block .rn-link {
+    display: block; }
+  .goodreads-block .notification-badge {
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    width: 1.15rem;
+    height: 1.15rem;
+    background-color: #409ad5;
+    animation-name: notification-pulse;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite; }
+    .goodreads-block .notification-badge-right {
+      margin: 0.3rem 0.25rem 0.25rem 0.5rem; }
+    .goodreads-block .notification-badge-left {
+      margin: 0.65rem 0.25rem 0.25rem -0.9rem; }
+    .goodreads-block .notification-badge-book {
+      margin: -0.5rem 0.25rem 0.25rem -0.5rem; }
+
+@keyframes notification-pulse {
+  0% {
+    background-color: #409ad5; }
+  50% {
+    background-color: #6ab0de;
+    box-shadow: 0 0 5px 0px #409ad5; }
+  100% {
+    background-color: #409ad5; } }
 
 .letterboxd-block {
   background: #141414;

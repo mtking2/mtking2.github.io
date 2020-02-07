@@ -153,6 +153,41 @@ canvas
       margin-bottom: 0.5rem
       box-shadow: $box-shadow
       border-radius: $border-radius
+    &-note
+      margin-left: 1.5rem
+      font-size: $font-size - 2
+      .notification-badge
+        width: 0.8rem !important
+        height: 0.8rem !important
+
+  .rn-link
+    display: block
+
+  .notification-badge
+    position: absolute
+    z-index: 1
+    border-radius: 50%
+    width: 1.15rem
+    height: 1.15rem
+    background-color: lighten($blue-color, 10%)
+    animation-name: notification-pulse
+    animation-duration: 1.5s
+    animation-iteration-count: infinite
+    &-right
+      margin: 0.3rem 0.25rem 0.25rem 0.5rem
+    &-left
+      margin: 0.65rem 0.25rem 0.25rem -0.9rem
+    &-book
+      margin: -0.5rem 0.25rem 0.25rem -0.5rem
+
+  @keyframes notification-pulse
+    0%
+      background-color: lighten($blue-color, 10%)
+    50%
+      background-color: lighten($blue-color, 20%)
+      box-shadow: 0 0 5px 0px lighten($blue-color, 10%)
+    100%
+      background-color: lighten($blue-color, 10%)
 
 .letterboxd-block
   background: $dark-color
