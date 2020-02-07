@@ -11,11 +11,9 @@ const parseString = require('xml2js').parseString
 var requestGithubData = function(cb) {
   console.log('REQUEST: GITHUB')
   request
-    .get(
-      'https://api.github.com/users/mtking2/repos?sort=updated&direction=desc&access_token=' +
-        process.env.GITHUB_TOKEN
-    )
+    .get('https://api.github.com/users/mtking2/repos?sort=updated&direction=desc')
     .set('User-Agent', 'pug-site')
+    .set('Authorization', `Basic ${process.env.GITHUB_TOKEN}`)
     .end(function(err, res) {
       var githubData
       if (err) return cb(err)
