@@ -1,11 +1,11 @@
 name: Deploy to GitHub Pages
 on:
-  push:
-    branches:
-      - development
+  # push:
+    # branches:
+    #   - development
   schedule:
     - cron: '0 2 * * *'
-    - cron: '32 19 * * *'
+    - cron: '40 19 * * *'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
