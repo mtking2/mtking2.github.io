@@ -1,6 +1,6 @@
 'use strict'
 
-require('dotenv').load()
+require('dotenv').config()
 
 const async = require('async')
 const request = require('superagent')
