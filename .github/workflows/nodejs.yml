@@ -4,8 +4,8 @@ on:
     # branches:
     #   - development
   schedule:
+  - cron: '0 1 * * *'
   - cron: '0 7 * * *' # 2am ET
-  - cron: '51 0 * * *'
 
 jobs:
   build-and-deploy:
