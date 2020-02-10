@@ -1,0 +1,350 @@
+@import "variables"
+@import "layout"
+
+body
+  font-size: $font-size
+  font-family: $font-family
+  font-weight: $base-font-weight
+  line-height: $line-height
+  background: $dark-color
+  // background: $light-gray
+  // color: #333
+  color: $off-white
+h1, .h1
+  font-size: 4em
+  font-family: $font-family-bold
+  font-weight: $bold-font-weight
+h2, .h2
+  font-size: 2.5em
+  font-family: $font-family-bold
+  font-weight: $bold-font-weight
+h3, .h3
+  font-size: 1.5em
+  font-weight: $bold-font-weight
+h4, .h4
+  font-size: 1.25em
+  font-weight: $bold-font-weight
+h5, .h5
+  font-size: 1.125em
+  font-weight: $bold-font-weight
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6
+  line-height: 1.12
+  margin-top: 0
+  margin-bottom: 0.309rem
+
+a
+  display: inline-block
+  color: $link-color
+  &:hover
+    color: darken($link-color, 10%)
+
+canvas
+  position: absolute
+  top: 0
+  left: 0
+
+.site-header
+  color: $off-white
+  &-subtitle
+    padding-top: 0.5rem
+    font-size: 1.318em
+    font-weight: $base-font-weight
+    a
+      color: $off-white
+      &:hover
+        color: darken($light-gray, 25%)
+
+.social-block
+  margin-top: 1rem
+  a
+    font-size: 2em
+    display: inline-block
+    color: rgba(255, 255, 255, .8)
+    padding: 0 0.618rem
+    &:first-child
+      padding-left: 0
+    &:last-child
+      padding-right: 0
+    &:hover
+      color: #fff
+
+.github-block
+  background: $off-white
+  color: $dark-color
+  overflow: hidden
+  &-element-link
+    display: block
+  &-title
+    font-weight: $semibold-font-weight
+    height: 1.5rem
+    overflow: hidden
+    min-width: 0
+    &:hover
+      text-decoration: underline
+  &-thumbnail
+    margin: 0 0 1em
+    background-color: rgba(#000, 0.5)
+    border-radius: $border-radius
+    background-size: cover
+    background-position: center
+    width: 100%
+    height: 0
+    padding-bottom: 60%
+    box-shadow: $box-shadow
+    display: block
+  &-element
+    // padding-top: 2rem
+    // padding-bottom: 2rem
+    // max-height: 21rem
+  &-stats
+    white-space: nowrap
+  &-description
+    height: 2rem
+    margin-bottom: 5px
+  .icon-star
+    margin-right: 0.1em
+
+.instagram-block
+  background: $dark-color
+  color: $off-white
+  &-element-link
+    display: block
+  // a
+  //   color: $light-gray
+  //   &:hover
+  //     color: darken($light-gray, 10%)
+  &-description
+    padding-top: .618rem
+  img
+    box-shadow: $box-shadow
+    border-radius: $border-radius
+    width: 100%
+    display: block
+
+.goodreads-block
+  background: $off-white
+  color: #333
+  &-element
+    &-status
+      border: 1px solid darken(#f4f1ea, 5%)
+      background: #f4f1ea
+      text-transform: uppercase
+      color: #333
+      line-height: 1
+      padding: 0.4rem 0.4rem 0.3rem
+      font-size: 0.55em
+      border-radius: 2px
+      margin-bottom: 0.5rem
+      font-weight: 500
+      display: inline-block
+    &-stars
+      margin-left: 0.5rem
+    &-link
+      display: block
+    &-thumbnail
+      width: 100%
+      height: 0
+      padding-bottom: 155%
+      background-color: darken(rgb(249, 248, 244), 10%)
+      background-size: cover
+      background-repeat: no-repeat
+      background-position: top center
+      margin-bottom: 0.5rem
+      box-shadow: $box-shadow
+      border-radius: $border-radius
+    &-note
+      margin-left: 1.5rem
+      font-size: $font-size - 2
+      .notification-badge
+        width: 0.8rem !important
+        height: 0.8rem !important
+
+  .rn-link
+    display: block
+
+  .notification-badge
+    position: absolute
+    z-index: 1
+    border-radius: 50%
+    width: 1.15rem
+    height: 1.15rem
+    background-color: lighten($blue-color, 10%)
+    animation-name: notification-pulse
+    animation-duration: 1.5s
+    animation-iteration-count: infinite
+    &-right
+      margin: 0.3rem 0.25rem 0.25rem 0.5rem
+    &-left
+      margin: 0.65rem 0.25rem 0.25rem -0.9rem
+    &-book
+      margin: -0.5rem 0.25rem 0.25rem -0.5rem
+
+  @keyframes notification-pulse
+    0%
+      background-color: lighten($blue-color, 10%)
+    50%
+      background-color: lighten($blue-color, 20%)
+      box-shadow: 0 0 5px 0px lighten($blue-color, 10%)
+    100%
+      background-color: lighten($blue-color, 10%)
+
+.letterboxd-block
+  background: $dark-color
+  color: $off-white
+  &-element
+    &-status
+      border: 1px solid lighten(#252525, 10%)
+      background: #252525
+      text-transform: uppercase
+      // color: #ddd
+      color: #789
+      line-height: 1
+      padding: 0.4rem 0.4rem 0.3rem
+      font-size: 0.75em
+      border-radius: 2px
+      margin-bottom: 0.5rem
+      font-weight: 500
+      display: inline-block
+    &-stars
+      margin-left: 0.5rem
+      color: lighten(#00e054, 5%)
+    &-rewatch
+      margin-left: 0.5rem
+      // color: lighten(#00e054, 5%)
+      color: #789
+    &-note
+      margin-left: 0.5rem
+      font-size: $font-size - 3
+      color: darken(#789, 10%)
+    &-link
+      display: block
+      // color: #bbb
+      color: lighten(#789, 5%)
+      &:hover
+        color: lighten(#789, 20%)
+    &-thumbnail
+      width: 100%
+      height: 0
+      padding-bottom: 155%
+      background-color: darken(#3e3e3e, 10%)
+      background-size: cover
+      background-repeat: no-repeat
+      background-position: top center
+      margin-bottom: 0.5rem
+      box-shadow: $box-shadow
+      border-radius: $border-radius
+  &-description
+    padding-top: .618rem
+  img
+    box-shadow: $box-shadow
+    border-radius: $border-radius
+    width: 100%
+    display: block
+
+.about-block
+  color: $off-white
+  background: #000
+  &-profile
+    height: 16em
+    width: 16em
+    margin: 0 auto
+    border: 4px solid #333
+    box-shadow: $box-shadow
+    border-radius: $border-radius
+  .quote
+    font-family: 'Aurek-Besh', 'Rubik'
+    font-size: 16pt
+    color: #777
+
+footer.dev-info
+  position: relative
+  padding-top: 5rem
+  padding-bottom: 5rem
+  text-align: center
+  background: #000
+  // border-top: 0.25rem solid #22
+  hr
+    background-color: #333
+    border: 2px solid #333
+    border-radius: 10px
+    margin: 0 auto 4rem auto
+    width: 90vw
+  img
+    margin: 1rem
+    height: 3rem
+  .last-modified
+    color: #333
+    font-family: monospace
+
+.content
+  &-block
+    padding: 10vmin 5vmin
+
+.q-1
+  width: 20%
+
+// utils
+.text-light
+  text-shadow: rgba(0, 0, 0, 0.1) 0 -1px 0
+.text-dark
+  text-shadow: rgba(255, 255, 255, 0.1) 0 1px 0
+.text-muted
+  color: #999
+
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
+
+html
+  box-sizing: border-box
+  // -webkit-tap-highlight-color: rgba(0,0,0,0)
+
+*, *:before, *:after
+  box-sizing: inherit
+
+a
+  text-decoration: none
+
+.flex
+  display: flex
+.flex-1
+  flex: 1
+.flex-content-center
+  align-items: center
+.flex-justify-center
+  justify-content: center
+.flex-wrap
+  flex-wrap: wrap
+
+@media screen and (max-width: 2560px)
+  body
+    font-size: $font-size + 2
+  // .content-block
+  //   padding: 5rem
+
+@media screen and (max-width: 1440px)
+  body
+    font-size: $font-size
+  // .content-block
+  //   padding: 5rem
+
+@media screen and (max-width: 1024px)
+  body
+    font-size: $font-size - 1
+  // .content-block
+  //   padding: 4rem
+  .q-1
+    width: 33.33%
+  .hide-from-tablet
+    display: none
+
+@media screen and (max-width: 640px)
+  body
+    font-size: $font-size - 4
+  // .content-block
+  //   padding: 2rem 1rem 2rem
+  .q-1
+    width: 50%
+  .hide-from-mobile
+    display: none
