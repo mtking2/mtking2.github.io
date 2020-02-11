@@ -258,22 +258,24 @@ canvas {
   background: #141414;
   color: #f9f8f4; }
   .letterboxd-block-element-status {
-    border: 1px solid #3f3f3f;
-    background: #252525;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    background: #272727;
     text-transform: uppercase;
     color: #789;
     line-height: 1;
-    padding: 0.4rem 0.4rem 0.3rem;
+    padding: 0.4rem;
     font-size: 0.75em;
     border-radius: 2px;
     margin-bottom: 0.5rem;
-    font-weight: 500;
-    display: inline-block; }
+    font-weight: 500; }
   .letterboxd-block-element-stars {
-    margin-left: 0.5rem;
     color: #00fa5e; }
   .letterboxd-block-element-rewatch {
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     color: #789; }
   .letterboxd-block-element-note {
     margin-left: 0.5rem;
@@ -394,7 +396,7 @@ a {
 
 @media screen and (max-width: 640px) {
   body {
-    font-size: 12px; }
+    font-size: 13px; }
   .q-1 {
     width: 50%; }
   .hide-from-mobile {
