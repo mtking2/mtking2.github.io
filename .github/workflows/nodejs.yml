@@ -19,7 +19,7 @@ jobs:
         npm install
         npm run build
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_KEY: ${{ secrets.GITHUB_KEY }}
         GOODREADS_KEY: ${{ secrets.GOODREADS_KEY }}
         INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
         LETTERBOXD_USERNAME: ${{ secrets.LETTERBOXD_USERNAME }}
