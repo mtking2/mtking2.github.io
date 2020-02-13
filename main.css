@@ -5,7 +5,7 @@
 .content {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 1rem; }
+  padding: 0 0.5vw; }
   .content.-small {
     max-width: 704px; }
 
@@ -366,7 +366,7 @@ footer.dev-info {
     font-family: monospace; }
 
 .content-block {
-  padding: 10vmin 5vmin; }
+  padding: 8vmin 4vmin; }
 
 .q-1 {
   width: 20%; }
@@ -422,9 +422,15 @@ a {
   .hide-from-tablet {
     display: none; } }
 
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 14px; } }
+
 @media screen and (max-width: 640px) {
   body {
-    font-size: 14px; }
+    font-size: 13px; }
+    body .content-block {
+      padding: 7vmin 5vmin; }
   .q-1 {
     width: 50%; }
   .hide-from-mobile {
