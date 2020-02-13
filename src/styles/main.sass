@@ -142,6 +142,7 @@ canvas
       margin-left: 0.5rem
     &-link
       display: block
+      -webkit-tap-highlight-color: transparent
     &-thumbnail
       width: 100%
       height: 0
@@ -153,6 +154,66 @@ canvas
       margin-bottom: 0.5rem
       box-shadow: $box-shadow
       border-radius: $border-radius
+      &-container
+        .notification-badge
+          position: absolute
+          z-index: 1
+          border-radius: 2px 0 100%
+          width: 2rem
+          height: 2rem
+          // background-color: lighten($blue-color, 10%)
+          background-color: lighten($green-color, 10%)
+          animation-name: notification-pulse
+          animation-duration: 1.25s
+          animation-iteration-count: infinite
+          &-right
+            right: 0
+            margin: 0.3rem 0.25rem 0.25rem 0.5rem
+          &-left
+            left: 0
+            margin: 0.65rem 0.25rem 0.25rem -0.9rem
+          &-book
+            top: 0
+            left: 0
+            // margin: -0.5rem 0.25rem 0.25rem -0.5rem
+            transition: top 0.1s, left 0.1s, width 0.15s, height 0.15s, background-color 0.15s, border-radius 0.1s ease
+            &-inner
+              display: none
+              opacity: 0
+              height: 100%
+              width: 100%
+              align-items: center
+              justify-content: center
+              color: $dark-color
+              font-weight: bold
+              padding: 0.5rem
+              transition: opacity 0.25s ease-in-out
+              a.rn-link
+                display: flex
+                justify-content: center
+                align-items: center
+                color: white
+                &:hover
+                  color: darken(white, 10%)
+                i
+                  margin-left: 0.5rem
+              .notes-last-updated
+                color: darken(slategrey, 25%)
+                font-style: italic
+
+          @keyframes notification-pulse
+            0%
+              // background-color: lighten($blue-color, 10%)
+              background-color: lighten($green-color, 10%)
+            50%
+              // background-color: lighten($blue-color, 25%)
+              // box-shadow: 0 0 5px 0px lighten($blue-color, 10%)
+              background-color: lighten($green-color, 25%)
+              box-shadow: 0 0 5px 0px lighten($green-color, 10%)
+            100%
+              // background-color: lighten($blue-color, 10%)
+              background-color: lighten($green-color, 10%)
+
     &-note
       margin-left: 1.5rem
       font-size: $font-size - 2
@@ -160,34 +221,7 @@ canvas
         width: 0.8rem !important
         height: 0.8rem !important
 
-  .rn-link
-    display: block
 
-  .notification-badge
-    position: absolute
-    z-index: 1
-    border-radius: 50%
-    width: 1.15rem
-    height: 1.15rem
-    background-color: lighten($blue-color, 10%)
-    animation-name: notification-pulse
-    animation-duration: 1.5s
-    animation-iteration-count: infinite
-    &-right
-      margin: 0.3rem 0.25rem 0.25rem 0.5rem
-    &-left
-      margin: 0.65rem 0.25rem 0.25rem -0.9rem
-    &-book
-      margin: -0.5rem 0.25rem 0.25rem -0.5rem
-
-  @keyframes notification-pulse
-    0%
-      background-color: lighten($blue-color, 10%)
-    50%
-      background-color: lighten($blue-color, 20%)
-      box-shadow: 0 0 5px 0px lighten($blue-color, 10%)
-    100%
-      background-color: lighten($blue-color, 10%)
 
 .letterboxd-block
   background: $dark-color
@@ -331,6 +365,8 @@ a
     font-size: $font-size
   // .content-block
   //   padding: 5rem
+  .q-1
+    width: 20%
 
 @media screen and (max-width: 1024px)
   body
@@ -344,7 +380,7 @@ a
 
 @media screen and (max-width: 640px)
   body
-    font-size: $font-size - 3
+    font-size: $font-size - 2
   // .content-block
   //   padding: 2rem 1rem 2rem
   .q-1

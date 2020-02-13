@@ -170,6 +170,7 @@ var requestGoodreadsData = async function(cb) {
           let date = new Date(new Date().setHours(0,0,0,0))
           let hasNewNotes = new Date(readingNotesData.updated) > date.setDate(date.getDate() - 30)
           book.hasNewNotes = hasNewNotes;
+          book.notesLastUpdated = new Date(readingNotesData.updated).toDateString();
         }
       }
       // console.log(books)
