@@ -208,7 +208,8 @@ canvas {
   .goodreads-block-element-stars {
     margin-left: 0.5rem; }
   .goodreads-block-element-link {
-    display: block; }
+    display: block;
+    -webkit-tap-highlight-color: transparent; }
   .goodreads-block-element-thumbnail {
     width: 100%;
     height: 0;
@@ -220,39 +221,64 @@ canvas {
     margin-bottom: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.06) 0 0 0 1px, rgba(0, 0, 0, 0.06) 0 8px 0 -4px;
     border-radius: 2px; }
+    .goodreads-block-element-thumbnail-container .notification-badge {
+      position: absolute;
+      z-index: 1;
+      border-radius: 2px 0 100%;
+      width: 2rem;
+      height: 2rem;
+      background-color: #63d286;
+      animation-name: notification-pulse;
+      animation-duration: 1.25s;
+      animation-iteration-count: infinite; }
+      .goodreads-block-element-thumbnail-container .notification-badge-right {
+        right: 0;
+        margin: 0.3rem 0.25rem 0.25rem 0.5rem; }
+      .goodreads-block-element-thumbnail-container .notification-badge-left {
+        left: 0;
+        margin: 0.65rem 0.25rem 0.25rem -0.9rem; }
+      .goodreads-block-element-thumbnail-container .notification-badge-book {
+        top: 0;
+        left: 0;
+        transition: top 0.1s, left 0.1s, width 0.15s, height 0.15s, background-color 0.15s, border-radius 0.1s ease; }
+        .goodreads-block-element-thumbnail-container .notification-badge-book-inner {
+          display: none;
+          opacity: 0;
+          height: 100%;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          color: #141414;
+          font-weight: bold;
+          padding: 0.5rem;
+          transition: opacity 0.25s ease-in-out; }
+          .goodreads-block-element-thumbnail-container .notification-badge-book-inner a.rn-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white; }
+            .goodreads-block-element-thumbnail-container .notification-badge-book-inner a.rn-link:hover {
+              color: #e6e6e6; }
+            .goodreads-block-element-thumbnail-container .notification-badge-book-inner a.rn-link i {
+              margin-left: 0.5rem; }
+          .goodreads-block-element-thumbnail-container .notification-badge-book-inner .notes-last-updated {
+            color: #384048;
+            font-style: italic; }
+
+@keyframes notification-pulse {
+  0% {
+    background-color: #63d286; }
+  50% {
+    background-color: #9fe3b4;
+    box-shadow: 0 0 5px 0px #63d286; }
+  100% {
+    background-color: #63d286; } }
   .goodreads-block-element-note {
     margin-left: 1.5rem;
     font-size: 14px; }
     .goodreads-block-element-note .notification-badge {
       width: 0.8rem !important;
       height: 0.8rem !important; }
-  .goodreads-block .rn-link {
-    display: block; }
-  .goodreads-block .notification-badge {
-    position: absolute;
-    z-index: 1;
-    border-radius: 50%;
-    width: 1.15rem;
-    height: 1.15rem;
-    background-color: #409ad5;
-    animation-name: notification-pulse;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite; }
-    .goodreads-block .notification-badge-right {
-      margin: 0.3rem 0.25rem 0.25rem 0.5rem; }
-    .goodreads-block .notification-badge-left {
-      margin: 0.65rem 0.25rem 0.25rem -0.9rem; }
-    .goodreads-block .notification-badge-book {
-      margin: -0.5rem 0.25rem 0.25rem -0.5rem; }
-
-@keyframes notification-pulse {
-  0% {
-    background-color: #409ad5; }
-  50% {
-    background-color: #6ab0de;
-    box-shadow: 0 0 5px 0px #409ad5; }
-  100% {
-    background-color: #409ad5; } }
 
 .letterboxd-block {
   background: #141414;
@@ -384,7 +410,9 @@ a {
 
 @media screen and (max-width: 1440px) {
   body {
-    font-size: 16px; } }
+    font-size: 16px; }
+  .q-1 {
+    width: 20%; } }
 
 @media screen and (max-width: 1024px) {
   body {
@@ -396,7 +424,7 @@ a {
 
 @media screen and (max-width: 640px) {
   body {
-    font-size: 13px; }
+    font-size: 14px; }
   .q-1 {
     width: 50%; }
   .hide-from-mobile {
