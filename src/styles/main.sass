@@ -316,7 +316,7 @@ footer.dev-info
 
 .content
   &-block
-    padding: 10vmin 5vmin
+    padding: 8vmin 4vmin
 
 .q-1
   width: 20%
@@ -378,9 +378,15 @@ a
   .hide-from-tablet
     display: none
 
-@media screen and (max-width: 640px)
+@media screen and (max-width: 800px)
   body
     font-size: $font-size - 2
+
+@media screen and (max-width: 640px)
+  body
+    font-size: $font-size - 3
+    .content-block
+      padding: 7vmin 5vmin
   // .content-block
   //   padding: 2rem 1rem 2rem
   .q-1
