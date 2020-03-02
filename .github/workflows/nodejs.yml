@@ -5,6 +5,7 @@ on:
       - development
   schedule:
     - cron: '0 7 * * *' # 2am ET
+    - cron: '0 18 * * *' # 1pm ET
 
 jobs:
   build-and-deploy:
