@@ -46,12 +46,8 @@ block content
       div.flex.flex-justify-center.flex-wrap.row
         each instagram, instagramIndex in instagramData
           div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 5 ? 'hide-from-mobile' : '')
-            a(href=instagram.link).instagram-block-element-link
-              if instagram.type === 'carousel'
-                - var insta_url = instagram.carousel_media.filter( (e) => { return e.type === 'image' } )[0].images.standard_resolution.url              
-              else
-                - var insta_url = instagram.images.standard_resolution.url
-              img(src=insta_url alt=instagram.caption.text || 'image')
+            a(href=instagram.permalink).instagram-block-element-link
+              img(src=instagram.media_url alt=instagram.caption || 'image')
               //- div.instagram-block-description.cf
               //-   div.pull-left= instagram.caption.text
   div.goodreads-block.text-dark.content-block: div.content

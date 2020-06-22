@@ -1,13 +1,32 @@
 'use strict'
 
-require('dotenv').config()
+const fs = require('fs')
+const path = require('path')
+const dotenv = require('dotenv')
+const envConfig = dotenv.parse(fs.readFileSync('.env'))
 
 const async = require('async')
 const request = require('superagent')
 const _ = require('lodash')
 const axios = require('axios')
 const parseString = require('xml2js').parseString
-const fm = require('front-matter');
+const fm = require('front-matter')
+
+var updateEnv = function() {
+  console.log(envConfig)
+
+  var envStr = []
+  for (let k in envConfig) {
+    envStr.push(`${k}=${envConfig[k]}`)
+  }
+
+  // console.log(envStr.join("\n"))
+
+  // fs.writeFile('.env', envStr.join("\n"), function(err) {
+  //   if (err) return console.error(err)
+  //   console.log('UPDATED FILE: .env')
+  // })
+}
 
 var requestGithubData = function(cb) {
   console.log('REQUEST: GITHUB')
@@ -37,27 +56,62 @@ var requestGithubData = function(cb) {
 
 var requestInstagramData = function(cb) {
   console.log('REQUEST: INSTAGRAM GENERAL')
+  if (new Date() > new Date(`${envConfig.INSTAGRAM_TOKEN_REFRESH}`)) {
+    request
+      .get(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${envConfig.INSTAGRAM_GRAPH_TOKEN}`)
+      .end(function(err, res) {
+        if (err) return cb(err)
+
+        console.log('RESPONSE: INSTAGRAM TOKEN REFRESH')
+        console.log(res.body)
+        let newExpireDate = new Date(new Date().getTime() + (res.body.expires_in*1000) - (5*86400*1000))
+        let newTokenExpire = newExpireDate.toISOString().slice(0, 10)
+
+        envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
+        envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenExpire
+        updateEnv()
+      })
+  }
+
   request
-    .get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${process.env.INSTAGRAM_TOKEN}`)
+    .get(`https://graph.instagram.com/${envConfig.INSTAGRAM_USER_ID}/media?access_token=${envConfig.INSTAGRAM_GRAPH_TOKEN}&fields=id,caption,media_type,media_url,permalink,timestamp`)
     .end(function(err, res) {
-      var instagramGeneralData
-
       if (err) return cb(err)
-
-      console.log('RESPONSE: INSTAGRAM GENERAL')
+      var instagramMediaData
+      console.log('RESPONSE: INSTAGRAM MEDIA')
       // console.log(res.body.data)
-      instagramGeneralData = _(res.body.data)
-        // .sortBy(function(el, index) {
-        //   return -1 * el.likes.count + index * 1.5
-        // })
+
+      instagramMediaData = _(res.body.data)
         .filter((post) => {
-          if (post.type == 'image' || post.type == 'carousel') {
+          if (post.media_type == 'IMAGE' || post.media_type == 'CAROUSEL_ALBUM') {
             return post
           }
         }).take(12).value()
 
-      cb(null, instagramGeneralData)
+        cb(null, instagramMediaData)
     })
+
+  // request
+  //   .get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${process.env.INSTAGRAM_TOKEN}`)
+  //   .end(function(err, res) {
+  //     var instagramGeneralData
+  //
+  //     if (err) return cb(err)
+  //
+  //     console.log('RESPONSE: INSTAGRAM GENERAL')
+  //     // console.log(res.body.data)
+  //     instagramGeneralData = _(res.body.data)
+  //       // .sortBy(function(el, index) {
+  //       //   return -1 * el.likes.count + index * 1.5
+  //       // })
+  //       .filter((post) => {
+  //         if (post.type == 'image' || post.type == 'carousel') {
+  //           return post
+  //         }
+  //       }).take(12).value()
+  //
+  //     cb(null, instagramGeneralData)
+  //   })
 }
 
 function getReadingNotesData(isbn) {
