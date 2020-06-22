@@ -1,11 +1,11 @@
 name: Deploy to GitHub Pages
-# on:
-#   push:
-#     branches:
-#       - development
-#   schedule:
-#     - cron: '0 7 * * *' # 2am ET
-#     - cron: '0 18 * * *' # 1pm ET
+on:
+  push:
+    branches:
+      - development
+  schedule:
+    - cron: '0 7 * * *' # 2am ET
+    - cron: '0 18 * * *' # 1pm ET
 
 jobs:
   build-and-deploy:
@@ -23,6 +23,9 @@ jobs:
         GITHUB_KEY: ${{ secrets.GITHUB_KEY }}
         GOODREADS_KEY: ${{ secrets.GOODREADS_KEY }}
         INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+        INSTAGRAM_GRAPH_TOKEN: ${{ secrets.INSTAGRAM_GRAPH_TOKEN }}
+        INSTAGRAM_TOKEN_REFRESH: #{{ secrets.INSTAGRAM_TOKEN_REFRESH }}
+        INSTAGRAM_USER_ID: #{{ secrets.INSTAGRAM_USER_ID }}
         LETTERBOXD_USERNAME: ${{ secrets.LETTERBOXD_USERNAME }}
         LETTERBOXD_PASSWORD: ${{ secrets.LETTERBOXD_PASSWORD }}
 
