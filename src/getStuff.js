@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
-const envConfig = dotenv.parse(fs.readFileSync('.env'))
+// const envConfig = dotenv.parse(fs.readFileSync('.env'))
 
 const async = require('async')
 const request = require('superagent')
@@ -22,10 +22,10 @@ var updateEnv = function() {
 
   // console.log(envStr.join("\n"))
 
-  // fs.writeFile('.env', envStr.join("\n"), function(err) {
-  //   if (err) return console.error(err)
-  //   console.log('UPDATED FILE: .env')
-  // })
+  fs.writeFile('.env', envStr.join("\n"), function(err) {
+    if (err) return console.error(err)
+    console.log('UPDATED FILE: .env')
+  })
 }
 
 var requestGithubData = function(cb) {
@@ -56,9 +56,9 @@ var requestGithubData = function(cb) {
 
 var requestInstagramData = function(cb) {
   console.log('REQUEST: INSTAGRAM GENERAL')
-  if (new Date() > new Date(`${envConfig.INSTAGRAM_TOKEN_REFRESH}`)) {
+  if (new Date() > new Date(`${process.env.INSTAGRAM_TOKEN_REFRESH}`)) {
     request
-      .get(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${envConfig.INSTAGRAM_GRAPH_TOKEN}`)
+      .get(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
       .end(function(err, res) {
         if (err) return cb(err)
 
@@ -67,14 +67,14 @@ var requestInstagramData = function(cb) {
         let newExpireDate = new Date(new Date().getTime() + (res.body.expires_in*1000) - (5*86400*1000))
         let newTokenExpire = newExpireDate.toISOString().slice(0, 10)
 
-        envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
-        envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenExpire
-        updateEnv()
+        // envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
+        // envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenExpire
+        // updateEnv()
       })
   }
 
   request
-    .get(`https://graph.instagram.com/${envConfig.INSTAGRAM_USER_ID}/media?access_token=${envConfig.INSTAGRAM_GRAPH_TOKEN}&fields=id,caption,media_type,media_url,permalink,timestamp`)
+    .get(`https://graph.instagram.com/${process.env.INSTAGRAM_USER_ID}/media?access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}&fields=id,caption,media_type,media_url,permalink,timestamp`)
     .end(function(err, res) {
       if (err) return cb(err)
       var instagramMediaData
