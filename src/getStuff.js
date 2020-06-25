@@ -56,7 +56,15 @@ var requestGithubData = function(cb) {
 
 var requestInstagramData = function(cb) {
   console.log('REQUEST: INSTAGRAM GENERAL')
-  if (new Date() > new Date(`${process.env.INSTAGRAM_TOKEN_REFRESH}`)) {
+
+  let today = new Date()
+  let refreshDate = new Date(`${process.env.INSTAGRAM_TOKEN_REFRESH}`)
+  let expireDate = new Date(`${process.env.INSTAGRAM_TOKEN_EXPIRE}`)
+  // console.log(`${process.env.INSTAGRAM_TOKEN_EXPIRE} ${expireDate}`)
+
+  console.log(`INFO: INSTAGRAM TOKEN: time to refresh: ${((refreshDate - today) / 86400000).toFixed(2)} days, time to expire: ${((expireDate - today) / 86400000).toFixed(2)} days`)
+
+  if (today > refreshDate) {
     request
       .get(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
       .end(function(err, res) {
@@ -64,8 +72,11 @@ var requestInstagramData = function(cb) {
 
         console.log('RESPONSE: INSTAGRAM TOKEN REFRESH')
         console.log(res.body)
-        let newExpireDate = new Date(new Date().getTime() + (res.body.expires_in*1000) - (5*86400*1000))
-        let newTokenExpire = newExpireDate.toISOString().slice(0, 10)
+        let newTokenExpire = new Date(new Date().getTime() + (res.body.expires_in*1000))
+        let newTokenExpireDate = newExpireDate.toISOString().slice(0, 10)
+        let newTokenRefreshDate = (newExpireDate - (5*86400000)).toISOString().slice(0, 10)
+
+        console.log(`NEW TOKEN: (refresh on ${newTokenRefreshDate} : expires on ${newTokenExpireDate}) ${res.body.access_token}`)
 
         // envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
         // envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenExpire
@@ -74,7 +85,7 @@ var requestInstagramData = function(cb) {
   }
 
   request
-    .get(`https://graph.instagram.com/${process.env.INSTAGRAM_USER_ID}/media?access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}&fields=id,caption,media_type,media_url,permalink,timestamp`)
+    .get(`https://graph.instagram.com/${process.env.INSTAGRAM_USER_ID}/media?fields=media_url,permalink,media_type,caption&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
     .end(function(err, res) {
       if (err) return cb(err)
       var instagramMediaData
