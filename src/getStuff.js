@@ -99,6 +99,8 @@ var requestInstagramData = function(cb) {
           }
         }).take(12).value()
 
+      console.log(instagramMediaData)
+
         cb(null, instagramMediaData)
     })
 
