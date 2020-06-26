@@ -4,7 +4,7 @@ on:
   #   branches:
   #     - development
   schedule:
-    - cron: '0 6 * * *' # 2am ET
+    - cron: '0 6 * * 1' # 2am ET on Monday
     # - cron: '12 15 * * *' # 11:12am ET
     # - cron: '0 17 * * *' # 1pm ET
 
