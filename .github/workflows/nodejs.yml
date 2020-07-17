@@ -1,8 +1,8 @@
 name: GitHub Pages deployment
 on:
-  # push:
-  #   branches:
-  #     - development
+  push:
+    branches:
+      - development
   schedule:
     - cron: '0 6 * * 1' # 2am ET on Monday
     # - cron: '12 15 * * *' # 11:12am ET
