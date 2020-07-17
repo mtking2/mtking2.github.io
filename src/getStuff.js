@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
+dotenv.config()
 // const envConfig = dotenv.parse(fs.readFileSync('.env'))
 
 const async = require('async')
