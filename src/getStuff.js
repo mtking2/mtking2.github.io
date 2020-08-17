@@ -72,10 +72,10 @@ var requestInstagramData = function(cb) {
         if (err) return cb(err)
 
         console.log('RESPONSE: INSTAGRAM TOKEN REFRESH')
-        console.log(res.body)
+        // console.log(res.body)
         let newTokenExpire = new Date(new Date().getTime() + (res.body.expires_in*1000))
-        let newTokenExpireDate = newExpireDate.toISOString().slice(0, 10)
-        let newTokenRefreshDate = (newExpireDate - (5*86400000)).toISOString().slice(0, 10)
+        let newTokenExpireDate = newTokenExpire.toISOString().slice(0, 10)
+        let newTokenRefreshDate = new Date(newTokenExpire.getTime() - (5*86400000)).toISOString().slice(0, 10)
 
         console.log(`NEW TOKEN: (refresh on ${newTokenRefreshDate} : expires on ${newTokenExpireDate}) ${res.body.access_token}`)
 
