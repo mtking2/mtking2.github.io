@@ -23,7 +23,7 @@
   "homepage": "https://github.com/mtking2/mtking2.github.io.git#readme",
   "devDependencies": {
     "async": "^1.4.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "browserify": "^13.0.0",
     "dancing-dots": "0.0.2",
     "delaunay-fast": "^1.0.1",
@@ -33,7 +33,7 @@
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
-    "pug": "^2.0.4",
+    "pug": "^3.0.2",
     "sass": "^1.25.0",
     "superagent": "^5.2.1",
     "uglify-js": "^2.6.1",
