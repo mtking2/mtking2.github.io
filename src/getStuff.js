@@ -77,7 +77,7 @@ var requestInstagramData = function(cb) {
         let newTokenExpireDate = newTokenExpire.toISOString().slice(0, 10)
         let newTokenRefreshDate = new Date(newTokenExpire.getTime() - (5*86400000)).toISOString().slice(0, 10)
 
-        console.log(`NEW TOKEN: (refresh on ${newTokenRefreshDate} : expires on ${newTokenExpireDate}) ${res.body.access_token}`)
+        console.log(`INSTAGRAM TOKEN REFRESHED: (refresh on ${newTokenRefreshDate} : expires on ${newTokenExpireDate})`)
 
         // envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
         // envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenExpire
