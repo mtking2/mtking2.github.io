@@ -100,9 +100,9 @@ var requestInstagramData = function(cb) {
           }
         }).take(12).value()
 
-      console.log(instagramMediaData)
+      // console.log(instagramMediaData)
 
-        cb(null, instagramMediaData)
+      cb(null, instagramMediaData)
     })
 
   // request
@@ -268,7 +268,7 @@ var requestLetterboxdData = function(cb) {
 
       let data = result.rss.channel[0];
       data.item.filter( (m) => {
-        return m.guid[0]['_'].includes('letterboxd-watch')
+        return /letterboxd-(watch|review)/.test(m.guid[0]['_'])
       }).forEach( (movie) => {
         films.push({
           title: movie['letterboxd:filmTitle'][0],
