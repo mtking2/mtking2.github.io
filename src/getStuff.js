@@ -65,25 +65,26 @@ var requestInstagramData = function(cb) {
 
   console.log(`INFO: INSTAGRAM TOKEN: time to refresh: ${((refreshDate - today) / 86400000).toFixed(2)} days, time to expire: ${((expireDate - today) / 86400000).toFixed(2)} days`)
 
-  if (today > refreshDate) {
-    request
-      .get(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
-      .end(function(err, res) {
-        if (err) return cb(err)
+  // if (today > refreshDate) {
+  //   request
+  //     .get(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
+  //     .end(function(err, res) {
+  //       if (err) return cb(err)
 
-        console.log('RESPONSE: INSTAGRAM TOKEN REFRESH')
-        // console.log(res.body)
-        let newTokenExpire = new Date(new Date().getTime() + (res.body.expires_in*1000))
-        let newTokenExpireDate = newTokenExpire.toISOString().slice(0, 10)
-        let newTokenRefreshDate = new Date(newTokenExpire.getTime() - (5*86400000)).toISOString().slice(0, 10)
+  //       console.log('RESPONSE: INSTAGRAM TOKEN REFRESH')
+  //       // console.log(res.body)
+  //       let newTokenExpire = new Date(new Date().getTime() + (res.body.expires_in*1000))
+  //       let newTokenExpireDate = newTokenExpire.toISOString().slice(0, 10)
+  //       let newTokenRefreshDate = new Date(newTokenExpire.getTime() - (5*86400000)).toISOString().slice(0, 10)
 
-        console.log(`INSTAGRAM TOKEN REFRESHED: (refresh on ${newTokenRefreshDate} : expires on ${newTokenExpireDate})`)
+  //       console.log(`INSTAGRAM TOKEN REFRESHED: (refresh on ${newTokenRefreshDate} : expires on ${newTokenExpireDate})`)
 
-        // envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
-        // envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenExpire
-        // updateEnv()
-      })
-  }
+  //       envConfig.INSTAGRAM_GRAPH_TOKEN = res.body.access_token
+  //       envConfig.INSTAGRAM_TOKEN_EXPIRE = newTokenExpireDate
+  //       envConfig.INSTAGRAM_TOKEN_REFRESH = newTokenRefreshDate
+  //       updateEnv()
+  //     })
+  // }
 
   request
     .get(`https://graph.instagram.com/${process.env.INSTAGRAM_USER_ID}/media?fields=media_url,permalink,media_type,caption&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
