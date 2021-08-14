@@ -31,10 +31,9 @@
     "front-matter": "^3.1.0",
     "http-server": "^0.12.1",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "pug": "^3.0.2",
-    "sass": "^1.25.0",
+    "sass": "^1.37.5",
     "superagent": "^5.2.1",
     "uglify-js": "^2.6.1",
     "xml2js": "^0.4.23"

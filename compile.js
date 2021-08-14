@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const pug = require('pug');
-const sass = require('node-sass');
+const sass = require('sass');
 
 const getStuff = require(path.join( __dirname, './src/getStuff.js'));
 
