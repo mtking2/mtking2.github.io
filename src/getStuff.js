@@ -96,7 +96,7 @@ var requestInstagramData = function(cb) {
 
       instagramMediaData = _(res.body.data)
         .filter((post) => {
-          if (post.media_type == 'IMAGE' || post.media_type == 'CAROUSEL_ALBUM') {
+          if (['IMAGE', 'CAROUSEL_ALBUM', 'VIDEO'].includes(post.media_type)) {
             return post
           }
         }).take(12).value()

@@ -48,7 +48,12 @@ block content
           div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 5 ? 'hide-from-mobile' : '')
             a(href=instagram.permalink).instagram-block-element-link
               - var cap = instagram.caption.length > 50 ? instagram.caption.substring(0,50) + '...' : instagram.caption
-              img(src=instagram.media_url alt=cap || 'image')
+              if instagram.media_type == 'VIDEO'
+                video(width="100%" controls autoplay muted loop)
+                  source(src=instagram.media_url type='video/mp4')
+              else
+                img(src=instagram.media_url alt=cap || 'image')
+              
               //- div.instagram-block-description.cf
               //-   div.pull-left= instagram.caption.text
   div.goodreads-block.text-dark.content-block: div.content
