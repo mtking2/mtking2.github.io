@@ -244,12 +244,13 @@ canvas {
   color: #f9f8f4;
 }
 .instagram-block-element-link {
-  display: block;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 .instagram-block-element-link .video-overlay {
   position: absolute;
-  left: 33%;
-  top: 32%;
   color: white;
   opacity: 0.5;
 }
