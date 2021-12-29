@@ -255,6 +255,13 @@ canvas {
   width: 100%;
   display: block;
 }
+.instagram-block .video-overlay {
+  position: absolute;
+  left: 33%;
+  top: 32%;
+  color: white;
+  opacity: 0.5;
+}
 
 .goodreads-block {
   background: #f9f8f4;
