@@ -246,6 +246,13 @@ canvas {
 .instagram-block-element-link {
   display: block;
 }
+.instagram-block-element-link .video-overlay {
+  position: absolute;
+  left: 33%;
+  top: 32%;
+  color: white;
+  opacity: 0.5;
+}
 .instagram-block-description {
   padding-top: 0.618rem;
 }
@@ -254,13 +261,6 @@ canvas {
   border-radius: 2px;
   width: 100%;
   display: block;
-}
-.instagram-block .video-overlay {
-  position: absolute;
-  left: 33%;
-  top: 32%;
-  color: white;
-  opacity: 0.5;
 }
 
 .goodreads-block {
