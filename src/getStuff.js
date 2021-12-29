@@ -87,7 +87,7 @@ var requestInstagramData = function(cb) {
   // }
 
   request
-    .get(`https://graph.instagram.com/${process.env.INSTAGRAM_USER_ID}/media?fields=media_url,permalink,media_type,caption&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
+    .get(`https://graph.instagram.com/${process.env.INSTAGRAM_USER_ID}/media?fields=media_url,permalink,media_type,caption,thumbnail_url&access_token=${process.env.INSTAGRAM_GRAPH_TOKEN}`)
     .end(function(err, res) {
       if (err) return cb(err)
       var instagramMediaData
