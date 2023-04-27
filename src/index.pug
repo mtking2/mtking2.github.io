@@ -120,7 +120,9 @@ block content
         br
         div.quote #[i This is the way]
       div.padding-1x
-        img.about-block-profile(src='assets/me.jpg', alt='Michael King')
+        picture
+          source(srcset='assets/me.webp', type='image/webp')
+          img.about-block-profile(src='assets/me.jpg', alt='Michael King')
 
   footer.dev-info
     hr
