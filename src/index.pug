@@ -62,7 +62,7 @@ block content
   div.goodreads-block.text-dark.content-block: div.content
     h2 I read books
     h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
-      small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
+      //- small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
     div.flex.flex-justify-center.flex-wrap.row
       each goodreads, goodreadsIndex in goodreadsData
         div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-tablet' : '', goodreadsIndex > 3 ? 'hide-from-mobile' : ''])
