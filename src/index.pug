@@ -11,7 +11,7 @@ block content
           i.fab.fa-linux
       div.social-block
         a(href='https://github.com/mtking2' target='_blank'): i.fab.fa-github
-        a(href='https://twitter.com/_mtking2' target='_blank'): i.fab.fa-twitter
+        a(href='https://twitter.com/_mtking2' target='_blank'): i.fab.fa-x-twitter
         a(rel="me" href="https://mastodon.social/@sudovisudo"): i.fab.fa-mastodon
         a(href='https://instagram.com/mtking2' target='_blank'): i.fab.fa-instagram
         a(href='https://goodreads.com/mtking2' target='_blank'): i.fab.fa-goodreads
@@ -40,25 +40,19 @@ block content
             div.button-container
               //- a(href=github.html_url).button.-invisible-dark Open repo
 
-  div.instagram-block.text-light.content-block
-    div.content
-      h2 I take pictures
-      h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
-      div.flex.flex-justify-center.flex-wrap.row
-        each instagram, instagramIndex in instagramData
-          div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 5 ? 'hide-from-mobile' : '')
-            a(href=instagram.permalink target='_blank').instagram-block-element-link
-              - var cap = instagram.caption?.length > 50 ? instagram.caption?.substring(0,50) + '...' : instagram.caption
-              img(src=instagram.thumbnail_url || instagram.media_url alt=cap || 'image')
-              if instagram.media_type == 'VIDEO'
-                span.fa.fa-play-circle.fa-5x.video-overlay
-              //-   video(width="100%" controls autoplay muted loop)
-              //-     source(src=instagram.permalink type='video/mp4')
-              //- else
-              //-   img(src=instagram.media_url alt=cap || 'image')
-              
-              //- div.instagram-block-description.cf
-              //-   div.pull-left= instagram.caption.text
+  //- div.instagram-block.text-light.content-block
+  //- 	div.content
+  //- 		h2 I take pictures
+  //- 		h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
+  //- 		div.flex.flex-justify-center.flex-wrap.row
+  //- 			each instagram, instagramIndex in instagramData
+  //- 				div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 5 ? 'hide-from-mobile' : '')
+  //- 					a(href=instagram.permalink target='_blank').instagram-block-element-link
+  //- 						- var cap = instagram.caption?.length > 50 ? instagram.caption?.substring(0,50) + '...' : instagram.caption
+  //- 						img(src=instagram.thumbnail_url || instagram.media_url alt=cap || 'image')
+  //- 						if instagram.media_type == 'VIDEO'
+  //- 							span.fa.fa-play-circle.fa-5x.video-overlay
+
   div.goodreads-block.text-dark.content-block: div.content
     h2 I read books
     h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
