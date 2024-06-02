@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  header#header.site-header.content-block.text-light
+  header#header.site-header.content-block.text-light.bg-dark
     canvas#headerCanvas
     div.padding-1x: div.content
       h1 Michael King
@@ -19,7 +19,7 @@ block content
         a(href='https://www.linkedin.com/in/mtking2' target='_blank'): i.fab.fa-linkedin
         a(href='assets/mking_resume.pdf' target='_blank' rel='noopener'): i.fa.fa-file-invoice
 
-  div.github-block.content-block.text-dark
+  div.github-block.content-block.text-dark.bg-light
     div.content
       h2 I code stuff
       h3 #[a(href='https://github.com/mtking2') @mtking2] on GitHub.
@@ -52,35 +52,8 @@ block content
   //- 						img(src=instagram.thumbnail_url || instagram.media_url alt=cap || 'image')
   //- 						if instagram.media_type == 'VIDEO'
   //- 							span.fa.fa-play-circle.fa-5x.video-overlay
-
-  div.goodreads-block.text-dark.content-block: div.content
-    h2 I read books
-    h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
-      //- small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
-    div.flex.flex-justify-center.flex-wrap.row
-      each goodreads, goodreadsIndex in goodreadsData
-        div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-tablet' : '', goodreadsIndex > 3 ? 'hide-from-mobile' : ''])
-          
-          div.goodreads-block-element-thumbnail-container
-            a(href=goodreads.url).goodreads-block-element-link
-              div.goodreads-block-element-thumbnail(style=`background-image: url(${goodreads.thumbnail})`)
-            if goodreads.hasNewNotes
-              div.notification-badge.notification-badge-book
-                div.notification-badge-book-inner 
-                  span I've recently added some reading notes for this book!
-                  span last updated on #[br]#[span.notes-last-updated=goodreads.notesLastUpdated]
-                  a(class='rn-link' href=`reading-notes/books/${goodreads.isbn13}.html` target='_blank') Take a look #[i.fa.fa-2x.fa-arrow-circle-right]
-          
-          div.goodreads-block-element-status
-            span=goodreads.status
-            if goodreads.status === 'read'
-              span.goodreads-block-element-stars
-              each star in new Array(goodreads.myRating)
-                span.fa.fa-star
-          a(href=goodreads.url).goodreads-block-element-link
-            div=goodreads.title + ' -' + goodreads.author
   
-  div.letterboxd-block.text-dark.content-block
+  div.letterboxd-block.text-light.bg-dark.content-block
     div.content
       h2 I watch movies
       h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd. 
@@ -102,6 +75,34 @@ block content
                   if film.rating % Math.floor(film.rating)
                     span.fa.fa-star-half
               div=film.title
+
+  div.goodreads-block.text-dark.bg-light.content-block: div.content
+    h2 I read books
+    h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
+      //- small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
+    div.flex.flex-justify-center.flex-wrap.row
+      each goodreads, goodreadsIndex in goodreadsData
+        //- div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-tablet' : '', goodreadsIndex > 3 ? 'hide-from-mobile' : ''])
+        div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-mobile' : ''])
+          
+          div.goodreads-block-element-thumbnail-container
+            a(href=goodreads.url).goodreads-block-element-link
+              div.goodreads-block-element-thumbnail(style=`background-image: url(${goodreads.thumbnail})`)
+            if goodreads.hasNewNotes
+              div.notification-badge.notification-badge-book
+                div.notification-badge-book-inner 
+                  span I've recently added some reading notes for this book!
+                  span last updated on #[br]#[span.notes-last-updated=goodreads.notesLastUpdated]
+                  a(class='rn-link' href=`reading-notes/books/${goodreads.isbn13}.html` target='_blank') Take a look #[i.fa.fa-2x.fa-arrow-circle-right]
+          
+          div.goodreads-block-element-status
+            span=goodreads.status
+            if goodreads.status === 'read'
+              span.goodreads-block-element-stars
+              each star in new Array(goodreads.myRating)
+                span.fa.fa-star
+          a(href=goodreads.url).goodreads-block-element-link
+            div=goodreads.title + ' -' + goodreads.author
 
   div.about-block.text-light.content-block: div.content
     div.row.flex-content-center.block-on-small
