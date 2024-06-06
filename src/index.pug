@@ -40,41 +40,18 @@ block content
             div.button-container
               //- a(href=github.html_url).button.-invisible-dark Open repo
 
-  //- div.instagram-block.text-light.content-block
-  //- 	div.content
-  //- 		h2 I take pictures
-  //- 		h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
-  //- 		div.flex.flex-justify-center.flex-wrap.row
-  //- 			each instagram, instagramIndex in instagramData
-  //- 				div.col-3.padding-1x.instagram-block-element(class=instagramIndex > 5 ? 'hide-from-mobile' : '')
-  //- 					a(href=instagram.permalink target='_blank').instagram-block-element-link
-  //- 						- var cap = instagram.caption?.length > 50 ? instagram.caption?.substring(0,50) + '...' : instagram.caption
-  //- 						img(src=instagram.thumbnail_url || instagram.media_url alt=cap || 'image')
-  //- 						if instagram.media_type == 'VIDEO'
-  //- 							span.fa.fa-play-circle.fa-5x.video-overlay
-  
-  div.letterboxd-block.text-light.bg-dark.content-block
+  div.photos-block.text-light.content-block
     div.content
-      h2 I watch movies
-      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd. 
-        span.letterboxd-block-element-note #[span.fa.fa-sync-alt] = rewatch
+      h2 I take pictures
+      //- h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
       div.flex.flex-justify-center.flex-wrap.row
-        each film, filmIndex in letterboxdData
-          div.q-1.padding-1x.letterboxd-block-element(class=filmIndex > 5 ? 'hide-from-mobile' : '')
-            a(href=film.link target='_blank').letterboxd-block-element-link
-              //-img(src=film.image_url alt=film.title || 'image')
-              div.letterboxd-block-element-thumbnail(style=`background-image: url(${film.image_url})`)
-              div.letterboxd-block-element-status
-                span=film.watch_date
-                if film.rewatch === 'Yes'
-                  span.letterboxd-block-element-rewatch
-                    span.fa.fa-sync-alt
-                span.letterboxd-block-element-stars
-                  each star in new Array(parseInt(film.rating, 10))
-                    span.fa.fa-star
-                  if film.rating % Math.floor(film.rating)
-                    span.fa.fa-star-half
-              div=film.title
+        each photo, photoIndex in googlePhotosData 
+          div.col-3.padding-1x.photos-block-element(class=photoIndex > 5 ? 'hide-from-mobile' : '')
+            a(href=photo.productUrl target='_blank').photos-block-element-link
+              - var cap = photo.description?.length > 50 ? photo.description?.substring(0,50) + '...' : photo.description
+              img(src=photo.baseUrl || photo.productUrl alt=cap || 'image')
+              //- if instagram.media_type == 'VIDEO'
+              //- 	span.fa.fa-play-circle.fa-5x.video-overlay
 
   div.goodreads-block.text-dark.bg-light.content-block: div.content
     h2 I read books
@@ -103,6 +80,29 @@ block content
                 span.fa.fa-star
           a(href=goodreads.url).goodreads-block-element-link
             div=goodreads.title + ' -' + goodreads.author
+
+  div.letterboxd-block.text-light.bg-dark.content-block
+    div.content
+      h2 I watch movies
+      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd. 
+        span.letterboxd-block-element-note #[span.fa.fa-sync-alt] = rewatch
+      div.flex.flex-justify-center.flex-wrap.row
+        each film, filmIndex in letterboxdData
+          div.q-1.padding-1x.letterboxd-block-element(class=filmIndex > 5 ? 'hide-from-mobile' : '')
+            a(href=film.link target='_blank').letterboxd-block-element-link
+              //-img(src=film.image_url alt=film.title || 'image')
+              div.letterboxd-block-element-thumbnail(style=`background-image: url(${film.image_url})`)
+              div.letterboxd-block-element-status
+                span=film.watch_date
+                if film.rewatch === 'Yes'
+                  span.letterboxd-block-element-rewatch
+                    span.fa.fa-sync-alt
+                span.letterboxd-block-element-stars
+                  each star in new Array(parseInt(film.rating, 10))
+                    span.fa.fa-star
+                  if film.rating % Math.floor(film.rating)
+                    span.fa.fa-star-half
+              div=film.title
 
   div.about-block.text-light.content-block: div.content
     div.row.flex-content-center.block-on-small

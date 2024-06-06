@@ -11,6 +11,8 @@ const request = require("superagent")
 const _ = require("lodash")
 const axios = require("axios")
 const parseString = require("xml2js").parseString
+const { google } = require("googleapis")
+
 // const fm = require("front-matter")
 
 // var updateEnv = function() {
@@ -29,7 +31,63 @@ const parseString = require("xml2js").parseString
 //   })
 // }
 
-var requestGithubData = function (cb) {
+async function getGoogleAccessToken() {
+	const oauth2Client = new google.auth.OAuth2(
+		process.env.G_PHOTOS_CLIENT_ID,
+		process.env.G_PHOTOS_CLIENT_SECRET,
+		"urn:ietf:wg:oauth:2.0:oob",
+	)
+
+	oauth2Client.setCredentials({
+		refresh_token: process.env.G_PHOTOS_REFRESH_TOKEN,
+	})
+
+	const { token } = await oauth2Client.getAccessToken()
+	return token
+}
+
+const listGooglePhotoAlbums = async function () {
+	const accessToken = await getGoogleAccessToken()
+	const response = await axios.get("https://photoslibrary.googleapis.com/v1/albums", {
+		headers: { Authorization: `Bearer ${accessToken}` },
+	})
+
+	return response.data.albums
+}
+
+const listGoogleAlbumPhotos = async function (albumId) {
+	const accessToken = await getGoogleAccessToken()
+	const response = await axios.post(
+		"https://photoslibrary.googleapis.com/v1/mediaItems:search",
+		{ albumId: albumId, pageSize: 12 },
+		{ headers: { Authorization: `Bearer ${accessToken}` } },
+	)
+
+	return response.data.mediaItems
+}
+
+const requestGooglePhotosData = function (cb) {
+	listGooglePhotoAlbums()
+		.then((albums) => {
+			albums.forEach((album) => {
+				console.log(`Album ID: ${album.id}, Title: ${album.title}`)
+			})
+		})
+		.catch((error) => {
+			console.error("Error fetching albums:", error)
+		})
+
+	listGoogleAlbumPhotos(process.env.G_PHOTOS_ALBUM_ID)
+		.then((photos) => {
+			console.log("GOOGLE PHOTOS:", photos)
+			cb(null, photos)
+		})
+		.catch((error) => {
+			console.error("Error fetching photos:", error)
+		})
+}
+
+const requestGithubData = function (cb) {
 	console.log("REQUEST: GITHUB")
 	request
 		.get("https://api.github.com/users/mtking2/repos?sort=updated&direction=desc")
@@ -203,7 +261,7 @@ var requestLetterboxdData = function (cb) {
 
 module.exports = function (cb) {
 	async.parallel(
-		[requestGithubData, requestGoodreadsData, requestLetterboxdData],
+		[requestGithubData, requestGoodreadsData, requestLetterboxdData, requestGooglePhotosData],
 		function (err, results) {
 			if (err) cb(err)
 
@@ -211,6 +269,7 @@ module.exports = function (cb) {
 				githubData: results[0],
 				goodreadsData: results[1],
 				letterboxdData: results[2],
+				googlePhotosData: results[3],
 			})
 		},
 	)
