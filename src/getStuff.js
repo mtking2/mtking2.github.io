@@ -116,7 +116,7 @@ const requestGithubData = function (cb) {
 	request
 		.get("https://api.github.com/users/mtking2/repos?sort=updated&direction=desc")
 		.set("User-Agent", "pug-site")
-		.set("Authorization", `Basic ${process.env.GITHUB_KEY}`)
+		.set("Authorization", `Basic ${process.env.GH_KEY}`)
 		.end(function (err, res) {
 			var githubData
 			if (err) return cb(err)
