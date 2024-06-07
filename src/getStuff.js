@@ -101,13 +101,14 @@ const requestGooglePhotosData = function (cb) {
 
 	listGooglePhotosFavorites()
 		.then((photos) => {
-			console.log("GOOGLE PHOTOS:", photos)
-			console.log(photos.map((p) => p.mediaMetadata.photo))
+			// console.log("GOOGLE PHOTOS:", photos)
+			// console.log(photos.map((p) => p.mediaMetadata.photo))
 			console.log("RESPONSE: G_PHOTOS", photos.length)
 			cb(null, photos)
 		})
 		.catch((error) => {
 			console.error("Error fetching photos:", error)
+			cb(error)
 		})
 }
 
@@ -223,6 +224,7 @@ const getGoodreadsBooks = async function (shelf) {
 		})
 		.catch(function (e) {
 			console.error(e)
+			cb(e)
 		})
 	return books
 }
@@ -280,6 +282,7 @@ var requestLetterboxdData = function (cb) {
 		})
 		.catch(function (e) {
 			console.error(e)
+			cb(e)
 		})
 }
 
