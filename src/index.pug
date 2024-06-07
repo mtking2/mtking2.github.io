@@ -43,15 +43,13 @@ block content
   div.photos-block.text-light.content-block
     div.content
       h2 I take pictures
-      //- h3 #[a(href='https://instagram.com/mtking2') @mtking2] on Instagram.
       div.flex.flex-justify-center.flex-wrap.row
         each photo, photoIndex in googlePhotosData 
-          div.col-3.padding-1x.photos-block-element(class=photoIndex > 5 ? 'hide-from-mobile' : '')
-            a(href=photo.productUrl target='_blank').photos-block-element-link
+          - var photoUrl = `${photo.baseUrl}=w1000-h1000`
+          div.col-3.padding-1x.photos-block-element(class=photoIndex > 7 ? 'hide-from-mobile' : '')
+            a(href=photoUrl target='_blank').photos-block-element-link
               - var cap = photo.description?.length > 50 ? photo.description?.substring(0,50) + '...' : photo.description
-              img(src=photo.baseUrl || photo.productUrl alt=cap || 'image')
-              //- if instagram.media_type == 'VIDEO'
-              //- 	span.fa.fa-play-circle.fa-5x.video-overlay
+              img(src=photoUrl alt=cap || 'image')
 
   div.goodreads-block.text-dark.bg-light.content-block: div.content
     h2 I read books

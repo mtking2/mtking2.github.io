@@ -66,20 +66,44 @@ const listGoogleAlbumPhotos = async function (albumId) {
 	return response.data.mediaItems
 }
 
-const requestGooglePhotosData = function (cb) {
-	listGooglePhotoAlbums()
-		.then((albums) => {
-			albums.forEach((album) => {
-				console.log(`Album ID: ${album.id}, Title: ${album.title}`)
-			})
-		})
-		.catch((error) => {
-			console.error("Error fetching albums:", error)
-		})
+const listGooglePhotosFavorites = async function () {
+	const accessToken = await getGoogleAccessToken()
+	const response = await axios.post(
+		"https://photoslibrary.googleapis.com/v1/mediaItems:search",
+		{ filters: { featureFilter: { includedFeatures: ["FAVORITES"] } } },
+		{ headers: { Authorization: `Bearer ${accessToken}` } },
+	)
 
-	listGoogleAlbumPhotos(process.env.G_PHOTOS_ALBUM_ID)
+	return _.take(response.data.mediaItems, 12)
+}
+
+const requestGooglePhotosData = function (cb) {
+	console.log("REQUEST: G_PHOTOS")
+
+	// listGooglePhotoAlbums()
+	// 	.then((albums) => {
+	// 		albums.forEach((album) => {
+	// 			console.log(`Album ID: ${album.id}, Title: ${album.title}`)
+	// 		})
+	// 	})
+	// 	.catch((error) => {
+	// 		console.error("Error fetching albums:", error)
+	// 	})
+
+	// listGoogleAlbumPhotos(process.env.G_PHOTOS_ALBUM_ID)
+	// 	.then((photos) => {
+	// 		console.log("GOOGLE PHOTOS:", photos)
+	// 		cb(null, photos)
+	// 	})
+	// 	.catch((error) => {
+	// 		console.error("Error fetching photos:", error)
+	// 	})
+
+	listGooglePhotosFavorites()
 		.then((photos) => {
 			console.log("GOOGLE PHOTOS:", photos)
+			console.log(photos.map((p) => p.mediaMetadata.photo))
+			console.log("RESPONSE: G_PHOTOS", photos.length)
 			cb(null, photos)
 		})
 		.catch((error) => {
