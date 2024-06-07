@@ -12,6 +12,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: github-pages
 
     steps:
     - name: Checkout
@@ -22,15 +23,13 @@ jobs:
         npm install
         npm run build
       env:
-        GITHUB_KEY: ${{ secrets.GITHUB_KEY }}
+        GH_KEY: ${{ secrets.GH_KEY }}
         GOODREADS_KEY: ${{ secrets.GOODREADS_KEY }}
-        INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
-        INSTAGRAM_GRAPH_TOKEN: ${{ secrets.INSTAGRAM_GRAPH_TOKEN }}
-        INSTAGRAM_TOKEN_REFRESH: ${{ secrets.INSTAGRAM_TOKEN_REFRESH }}
-        INSTAGRAM_TOKEN_EXPIRE: ${{ secrets.INSTAGRAM_TOKEN_EXPIRE }}
-        INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
         LETTERBOXD_USERNAME: ${{ secrets.LETTERBOXD_USERNAME }}
         LETTERBOXD_PASSWORD: ${{ secrets.LETTERBOXD_PASSWORD }}
+        G_PHOTOS_CLIENT_ID: ${{ secrets.G_PHOTOS_CLIENT_ID }}
+        G_PHOTOS_CLIENT_SECRET: ${{ secrets.G_PHOTOS_CLIENT_SECRET }}
+        G_PHOTOS_REFRESH_TOKEN: ${{ secrets.G_PHOTOS_REFRESH_TOKEN }}
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
