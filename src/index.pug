@@ -45,9 +45,10 @@ block content
       h2 I take pictures
       div.flex.flex-justify-center.flex-wrap.row
         each photo, photoIndex in googlePhotosData 
-          - var photoUrl = `${photo.baseUrl}=w1000-h1000`
+          - var photoUrl = `${photo.baseUrl}=w300-h300`
+          - var photoLgUrl = `${photo.baseUrl}=w1000-h1000`
           div.col-3.padding-1x.photos-block-element(class=photoIndex > 7 ? 'hide-from-mobile' : '')
-            a(href=photoUrl target='_blank').photos-block-element-link
+            a(href=photoLgUrl target='_blank').photos-block-element-link
               - var cap = photo.description?.length > 50 ? photo.description?.substring(0,50) + '...' : photo.description
               img(src=photoUrl alt=cap || 'image')
 
