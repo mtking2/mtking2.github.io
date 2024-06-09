@@ -1,7 +1,7 @@
 "use strict"
 
-// const fs = require("fs")
-// const path = require("path")
+const fs = require("fs")
+const path = require("path")
 const dotenv = require("dotenv")
 dotenv.config()
 // const envConfig = dotenv.parse(fs.readFileSync(".env"))
@@ -77,6 +77,49 @@ const listGooglePhotosFavorites = async function () {
 	return _.take(response.data.mediaItems, 12)
 }
 
+async function downloadImage(url, filepath) {
+	const writer = fs.createWriteStream(filepath)
+	const response = await axios({
+		url,
+		method: "GET",
+		responseType: "stream",
+	})
+
+	response.data.pipe(writer)
+
+	return new Promise((resolve, reject) => {
+		writer.on("finish", resolve)
+		writer.on("error", reject)
+	})
+}
+
+async function savePhotos(outputDir) {
+	try {
+		// const photos = await listAlbumPhotos(albumId);
+		const photos = await listGooglePhotosFavorites()
+		const photoData = []
+		if (photos && photos.length > 0) {
+			for (let i = 0; i < photos.length; i++) {
+				const photo = photos[i];
+				const url = `${photo.baseUrl}=w1000-h1000-d` // `-d` parameter to download the image
+				const filepath = path.join(outputDir, `photo${i+1}.jpg`)
+				await downloadImage(url, filepath)
+				console.log(`Downloaded ${photo.filename} to ${filepath}`)
+				photoData.push({
+					filename: photo.filename,
+					path: path.join("assets", "photos", path.basename(filepath)),
+					description: photo.description,
+				})
+			}
+		} else {
+			console.log("No photos found.")
+		}
+		return photoData
+	} catch (error) {
+		console.error("Error fetching photos:", error)
+	}
+}
+
 const requestGooglePhotosData = function (cb) {
 	console.log("REQUEST: G_PHOTOS")
 
@@ -99,11 +142,28 @@ const requestGooglePhotosData = function (cb) {
 	// 		console.error("Error fetching photos:", error)
 	// 	})
 
-	listGooglePhotosFavorites()
+	// listGooglePhotosFavorites()
+	// 	.then((photos) => {
+	// 		// console.log("GOOGLE PHOTOS:", photos)
+	// 		// console.log(photos.map((p) => p.mediaMetadata.photo))
+	// 		console.log("RESPONSE: G_PHOTOS", photos.length)
+	// 		cb(null, photos)
+	// 	})
+	// 	.catch((error) => {
+	// 		console.error("Error fetching photos:", error)
+	// 		cb(error)
+	// 	})
+
+	const outputDir = path.join(__dirname, '..', 'dist', 'assets', 'photos')
+
+	if (!fs.existsSync(outputDir)) {
+		fs.mkdirSync(outputDir)
+	}
+
+	savePhotos(outputDir)
 		.then((photos) => {
-			// console.log("GOOGLE PHOTOS:", photos)
-			// console.log(photos.map((p) => p.mediaMetadata.photo))
 			console.log("RESPONSE: G_PHOTOS", photos.length)
+			// console.log(photos)
 			cb(null, photos)
 		})
 		.catch((error) => {

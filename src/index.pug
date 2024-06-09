@@ -13,7 +13,6 @@ block content
         a(href='https://github.com/mtking2' target='_blank'): i.fab.fa-github
         a(href='https://twitter.com/_mtking2' target='_blank'): i.fab.fa-x-twitter
         a(rel="me" href="https://mastodon.social/@sudovisudo"): i.fab.fa-mastodon
-        a(href='https://instagram.com/mtking2' target='_blank'): i.fab.fa-instagram
         a(href='https://goodreads.com/mtking2' target='_blank'): i.fab.fa-goodreads
         a(href='http://steamcommunity.com/id/mtking2' target='_blank'): i.fab.fa-steam
         a(href='https://www.linkedin.com/in/mtking2' target='_blank'): i.fab.fa-linkedin
@@ -45,12 +44,10 @@ block content
       h2 I take pictures
       div.flex.flex-justify-center.flex-wrap.row
         each photo, photoIndex in googlePhotosData 
-          - var photoUrl = `${photo.baseUrl}=w300-h300`
-          - var photoLgUrl = `${photo.baseUrl}=w1000-h1000`
           div.col-3.padding-1x.photos-block-element(class=photoIndex > 7 ? 'hide-from-mobile' : '')
-            a(href=photoLgUrl target='_blank').photos-block-element-link
+            a(href=photo.path target='_blank').photos-block-element-link
               - var cap = photo.description?.length > 50 ? photo.description?.substring(0,50) + '...' : photo.description
-              img(src=photoUrl alt=cap || 'image')
+              img(src=photo.path alt=cap || photo.filename || 'image')
 
   div.goodreads-block.text-dark.bg-light.content-block: div.content
     h2 I read books
