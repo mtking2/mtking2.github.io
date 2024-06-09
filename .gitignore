@@ -3,5 +3,6 @@
 /yarn.lock
 dist/books/*.*
 dist/*.*
+dist/assets/photos
 .env
 log
