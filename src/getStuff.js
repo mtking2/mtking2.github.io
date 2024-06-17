@@ -42,8 +42,23 @@ async function getGoogleAccessToken() {
 		refresh_token: process.env.G_PHOTOS_REFRESH_TOKEN,
 	})
 
-	const { token } = await oauth2Client.getAccessToken()
-	return token
+	// const { token } = await oauth2Client.getAccessToken()
+	// return token
+	try {
+		const accessTokenResponse = await oauth2Client.getAccessToken()
+		return accessTokenResponse.token
+	} catch (error) {
+		console.error("Error refreshing access token:", error)
+		// Handle invalid refresh token error
+		if (
+			error.response &&
+			error.response.data &&
+			error.response.data.error === "invalid_grant"
+		) {
+			console.error("Refresh token has expired or is invalid.")
+		}
+		throw error
+	}
 }
 
 const listGooglePhotoAlbums = async function () {
@@ -100,9 +115,9 @@ async function savePhotos(outputDir) {
 		const photoData = []
 		if (photos && photos.length > 0) {
 			for (let i = 0; i < photos.length; i++) {
-				const photo = photos[i];
+				const photo = photos[i]
 				const url = `${photo.baseUrl}=w1000-h1000-d` // `-d` parameter to download the image
-				const filepath = path.join(outputDir, `photo${i+1}.jpg`)
+				const filepath = path.join(outputDir, `photo${i + 1}.jpg`)
 				await downloadImage(url, filepath)
 				console.log(`Downloaded ${photo.filename} to ${filepath}`)
 				photoData.push({
@@ -154,7 +169,7 @@ const requestGooglePhotosData = function (cb) {
 	// 		cb(error)
 	// 	})
 
-	const outputDir = path.join(__dirname, '..', 'dist', 'assets', 'photos')
+	const outputDir = path.join(__dirname, "..", "dist", "assets", "photos")
 
 	if (!fs.existsSync(outputDir)) {
 		fs.mkdirSync(outputDir)
