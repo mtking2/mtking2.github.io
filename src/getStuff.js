@@ -11,7 +11,6 @@ const request = require("superagent")
 const _ = require("lodash")
 const axios = require("axios")
 const parseString = require("xml2js").parseString
-const { google } = require("googleapis")
 
 // const fm = require("front-matter")
 
@@ -31,160 +30,25 @@ const { google } = require("googleapis")
 //   })
 // }
 
-async function getGoogleAccessToken() {
-	const oauth2Client = new google.auth.OAuth2(
-		process.env.G_PHOTOS_CLIENT_ID,
-		process.env.G_PHOTOS_CLIENT_SECRET,
-		"urn:ietf:wg:oauth:2.0:oob",
-	)
-
-	oauth2Client.setCredentials({
-		refresh_token: process.env.G_PHOTOS_REFRESH_TOKEN,
-	})
-
-	// const { token } = await oauth2Client.getAccessToken()
-	// return token
-	try {
-		const accessTokenResponse = await oauth2Client.getAccessToken()
-		return accessTokenResponse.token
-	} catch (error) {
-		console.error("Error refreshing access token:", error)
-		// Handle invalid refresh token error
-		if (
-			error.response &&
-			error.response.data &&
-			error.response.data.error === "invalid_grant"
-		) {
-			console.error("Refresh token has expired or is invalid.")
-		}
-		throw error
-	}
-}
-
-const listGooglePhotoAlbums = async function () {
-	const accessToken = await getGoogleAccessToken()
-	const response = await axios.get("https://photoslibrary.googleapis.com/v1/albums", {
-		headers: { Authorization: `Bearer ${accessToken}` },
-	})
-
-	return response.data.albums
-}
-
-const listGoogleAlbumPhotos = async function (albumId) {
-	const accessToken = await getGoogleAccessToken()
-	const response = await axios.post(
-		"https://photoslibrary.googleapis.com/v1/mediaItems:search",
-		{ albumId: albumId, pageSize: 12 },
-		{ headers: { Authorization: `Bearer ${accessToken}` } },
-	)
-
-	return response.data.mediaItems
-}
-
-const listGooglePhotosFavorites = async function () {
-	const accessToken = await getGoogleAccessToken()
-	const response = await axios.post(
-		"https://photoslibrary.googleapis.com/v1/mediaItems:search",
-		{ filters: { featureFilter: { includedFeatures: ["FAVORITES"] } } },
-		{ headers: { Authorization: `Bearer ${accessToken}` } },
-	)
-
-	return _.take(response.data.mediaItems, 12)
-}
-
-async function downloadImage(url, filepath) {
-	const writer = fs.createWriteStream(filepath)
-	const response = await axios({
-		url,
-		method: "GET",
-		responseType: "stream",
-	})
-
-	response.data.pipe(writer)
-
-	return new Promise((resolve, reject) => {
-		writer.on("finish", resolve)
-		writer.on("error", reject)
-	})
-}
-
-async function savePhotos(outputDir) {
-	try {
-		// const photos = await listAlbumPhotos(albumId);
-		const photos = await listGooglePhotosFavorites()
-		const photoData = []
-		if (photos && photos.length > 0) {
-			for (let i = 0; i < photos.length; i++) {
-				const photo = photos[i]
-				const url = `${photo.baseUrl}=w1000-h1000-d` // `-d` parameter to download the image
-				const filepath = path.join(outputDir, `photo${i + 1}.jpg`)
-				await downloadImage(url, filepath)
-				console.log(`Downloaded ${photo.filename} to ${filepath}`)
-				photoData.push({
-					filename: photo.filename,
-					path: path.join("assets", "photos", path.basename(filepath)),
-					description: photo.description,
-				})
-			}
-		} else {
-			console.log("No photos found.")
-		}
-		return photoData
-	} catch (error) {
-		console.error("Error fetching photos:", error)
-	}
-}
-
 const requestGooglePhotosData = function (cb) {
-	console.log("REQUEST: G_PHOTOS")
+	console.log("LOAD: G_PHOTOS")
 
-	// listGooglePhotoAlbums()
-	// 	.then((albums) => {
-	// 		albums.forEach((album) => {
-	// 			console.log(`Album ID: ${album.id}, Title: ${album.title}`)
-	// 		})
-	// 	})
-	// 	.catch((error) => {
-	// 		console.error("Error fetching albums:", error)
-	// 	})
+	const photosJSON = path.join(__dirname, "..", "dist", "assets", "photos", "photos.json")
 
-	// listGoogleAlbumPhotos(process.env.G_PHOTOS_ALBUM_ID)
-	// 	.then((photos) => {
-	// 		console.log("GOOGLE PHOTOS:", photos)
-	// 		cb(null, photos)
-	// 	})
-	// 	.catch((error) => {
-	// 		console.error("Error fetching photos:", error)
-	// 	})
-
-	// listGooglePhotosFavorites()
-	// 	.then((photos) => {
-	// 		// console.log("GOOGLE PHOTOS:", photos)
-	// 		// console.log(photos.map((p) => p.mediaMetadata.photo))
-	// 		console.log("RESPONSE: G_PHOTOS", photos.length)
-	// 		cb(null, photos)
-	// 	})
-	// 	.catch((error) => {
-	// 		console.error("Error fetching photos:", error)
-	// 		cb(error)
-	// 	})
-
-	const outputDir = path.join(__dirname, "..", "dist", "assets", "photos")
-
-	if (!fs.existsSync(outputDir)) {
-		fs.mkdirSync(outputDir)
-	}
-
-	savePhotos(outputDir)
-		.then((photos) => {
-			console.log("RESPONSE: G_PHOTOS", photos.length)
-			// console.log(photos)
-			cb(null, photos)
-		})
-		.catch((error) => {
-			console.error("Error fetching photos:", error)
-			cb(error)
-		})
+	fs.readFile(photosJSON, "utf8", (err, jsonString) => {
+		if (err) {
+			console.log("Error reading file:", err)
+			return
+		}
+		try {
+			// Parse JSON string to object
+			const data = JSON.parse(jsonString)
+			console.log("RESPONSE: G_PHOTOS", data.photos.length)
+			cb(null, data.photos)
+		} catch (err) {
+			console.log("Error parsing JSON string:", err)
+		}
+	})
 }
 
 const requestGithubData = function (cb) {

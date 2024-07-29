@@ -1,0 +1,54 @@
+{
+  "photos": [
+    {
+      "filename": "PXL_20240519_151456367.jpg",
+      "path": "assets/photos/photo1.jpg"
+    },
+    {
+      "filename": "PXL_20240518_221413381.jpg",
+      "path": "assets/photos/photo2.jpg"
+    },
+    {
+      "filename": "PXL_20240517_172011980.jpg",
+      "path": "assets/photos/photo3.jpg"
+    },
+    {
+      "filename": "PXL_20240517_171632061.jpg",
+      "path": "assets/photos/photo4.jpg"
+    },
+    {
+      "filename": "PXL_20240516_232636661.jpg",
+      "path": "assets/photos/photo5.jpg"
+    },
+    {
+      "filename": "PXL_20240516_232434086.jpg",
+      "path": "assets/photos/photo6.jpg"
+    },
+    {
+      "filename": "PXL_20240516_224301361.jpg",
+      "path": "assets/photos/photo7.jpg"
+    },
+    {
+      "filename": "PXL_20240513_213255852.jpg",
+      "path": "assets/photos/photo8.jpg"
+    },
+    {
+      "filename": "PXL_20240513_164731997.jpg",
+      "path": "assets/photos/photo9.jpg"
+    },
+    {
+      "filename": "PXL_20240513_164338719.jpg",
+      "path": "assets/photos/photo10.jpg"
+    },
+    {
+      "filename": "000076290024.jpg",
+      "path": "assets/photos/photo11.jpg",
+      "description": "000076290024.jpg"
+    },
+    {
+      "filename": "000076290021.jpg",
+      "path": "assets/photos/photo12.jpg",
+      "description": "000076290021.jpg"
+    }
+  ]
+}
