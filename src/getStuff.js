@@ -141,7 +141,8 @@ const getGoodreadsBooks = async function (shelf) {
 
 				// broken image fix
 				let imageOverridesIsbn = {
-					9780465007806: "https://images.gr-assets.com/books/1389237768l/33279.jpg",
+					"9780465007806": "https://images.gr-assets.com/books/1389237768l/33279.jpg",
+					"9781788734318": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1629218849i/58794920.jpg",
 				}
 				let imageOverridesTitle = {
 					"The Disordered Cosmos: A Journey into Dark Matter, Spacetime, and Dreams Deferred":
