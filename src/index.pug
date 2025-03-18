@@ -6,14 +6,14 @@ block content
     canvas#headerCanvas
     div.padding-1x: div.content
       h1 Michael King
-      div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. <br> Linux is the way to go. 
+      div.site-header-subtitle My life consists of writing code and staying up late at night to look up at the rest of the universe. <br> Linux is the way to go.
         a(href='http://distrowatch.com/')
           i.fab.fa-linux
       div.social-block
         a(href='https://github.com/mtking2' target='_blank'): i.fab.fa-github
-        a(href='https://twitter.com/_mtking2' target='_blank'): i.fab.fa-x-twitter
         a(rel="me" href="https://mastodon.social/@sudovisudo"): i.fab.fa-mastodon
-        a(href='https://goodreads.com/mtking2' target='_blank'): i.fab.fa-goodreads
+        //a(href='https://goodreads.com/mtking2' target='_blank'): i.fab.fa-goodreads
+        a(href='https://app.thestorygraph.com/profile/zetauma' target='_blank'): i.fas.fa-book
         a(href='http://steamcommunity.com/id/mtking2' target='_blank'): i.fab.fa-steam
         a(href='https://www.linkedin.com/in/mtking2' target='_blank'): i.fab.fa-linkedin
         a(href='assets/mking_resume.pdf' target='_blank' rel='noopener'): i.fa.fa-file-invoice
@@ -21,7 +21,7 @@ block content
   div.github-block.content-block.text-dark.bg-light
     div.content
       h2 I code stuff
-      h3 #[a(href='https://github.com/mtking2') @mtking2] on GitHub.
+      h3 #[a(href='https://github.com/mtking2') @mtking2] on GitHub
       div.row
         each github, githubIndex in githubData
           div.padding-1x.github-block-element(class=[githubIndex < 4 ? 'col-4' : 'col-4', githubIndex > 5 ? 'hide-from-tablet' : '', githubIndex > 3 ? 'hide-from-mobile' : ''])
@@ -43,7 +43,7 @@ block content
     div.content
       h2 I take pictures
       div.flex.flex-justify-center.flex-wrap.row
-        each photo, photoIndex in googlePhotosData 
+        each photo, photoIndex in googlePhotosData
           div.col-3.padding-1x.photos-block-element(class=photoIndex > 7 ? 'hide-from-mobile' : '')
             a(href=photo.path target='_blank').photos-block-element-link
               - var cap = photo.description?.length > 50 ? photo.description?.substring(0,50) + '...' : photo.description
@@ -51,23 +51,24 @@ block content
 
   div.goodreads-block.text-dark.bg-light.content-block: div.content
     h2 I read books
-    h3 #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads.
+    h3 #[a(href='https://app.thestorygraph.com/profile/zetauma') @zetauma] on StoryGraph
+      small.text-muted (or #[a(href='https://goodreads.com/mtking2') @mtking2] on goodreads)
       //- small.text-muted  Also, check out my #[a(href='../reading-notes') reading notes].
     div.flex.flex-justify-center.flex-wrap.row
       each goodreads, goodreadsIndex in goodreadsData
         //- div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-tablet' : '', goodreadsIndex > 3 ? 'hide-from-mobile' : ''])
         div.q-1.padding-1x.goodreads-block-element(class=[goodreadsIndex > 5 ? 'hide-from-mobile' : ''])
-          
+
           div.goodreads-block-element-thumbnail-container
             a(href=goodreads.url).goodreads-block-element-link
               div.goodreads-block-element-thumbnail(style=`background-image: url(${goodreads.thumbnail})`)
             if goodreads.hasNewNotes
               div.notification-badge.notification-badge-book
-                div.notification-badge-book-inner 
+                div.notification-badge-book-inner
                   span I've recently added some reading notes for this book!
                   span last updated on #[br]#[span.notes-last-updated=goodreads.notesLastUpdated]
                   a(class='rn-link' href=`reading-notes/books/${goodreads.isbn13}.html` target='_blank') Take a look #[i.fa.fa-2x.fa-arrow-circle-right]
-          
+
           div.goodreads-block-element-status
             span=goodreads.status
             if goodreads.status === 'read'
@@ -80,7 +81,7 @@ block content
   div.letterboxd-block.text-light.bg-dark.content-block
     div.content
       h2 I watch movies
-      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd. 
+      h3 #[a(href='https://letterboxd.com/mtking2') @mtking2] on Letterboxd
         span.letterboxd-block-element-note #[span.fa.fa-sync-alt] = rewatch
       div.flex.flex-justify-center.flex-wrap.row
         each film, filmIndex in letterboxdData
@@ -105,7 +106,7 @@ block content
       div.padding-1x.flex-1
         h2 I am Michael King
         div
-          h5 Software Developer based in Asheville, NC. Working on the enginnering team at #[b: a(href='https://www.tripleseat.com/') Tripleseat].
+          h5 Senior Software Developer based in Asheville, NC. Working on the enginnering team at #[b: a(href='https://www.tripleseat.com/') Tripleseat].
           br
           h5 Otherwise, you'll occasionally find me doing astronomy, astrophotography, 3D printing things, reading, or playing videogames.
         br
@@ -125,10 +126,6 @@ block content
     div.last-modified
       script
         | document.write("Last modified: " + document.lastModified + "");
-        
+
 //-append page_scripts
   script.
-    
-    
-    
-   
