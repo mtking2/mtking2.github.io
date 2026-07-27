@@ -146,7 +146,7 @@ a {
   color: #2980B9;
 }
 a:hover {
-  color: rgb(31.7477876106, 99.1150442478, 143.2522123894);
+  color: rgb(12.4501127885%, 38.8686448031%, 56.1773381919%);
 }
 
 canvas {
@@ -164,7 +164,7 @@ canvas {
   color: #f9f8f4;
 }
 .site-header-subtitle a:hover {
-  color: rgb(173.25, 173.25, 173.25);
+  color: rgb(67.9411764706%, 67.9411764706%, 67.9411764706%);
 }
 
 .social-block {
@@ -249,7 +249,7 @@ canvas {
 }
 
 .goodreads-block-element-status {
-  border: 1px solid rgb(235.234375, 229.84375, 217.265625);
+  border: 1px solid rgb(92.2487745098%, 90.1348039216%, 85.2022058824%);
   background: #f4f1ea;
   text-transform: uppercase;
   color: #333;
@@ -286,7 +286,7 @@ canvas {
   border-radius: 2px 0 100%;
   width: 2rem;
   height: 2rem;
-  background-color: rgb(99.4642857143, 209.5357142857, 133.7619047619);
+  background-color: rgb(39.0056022409%, 82.1708683473%, 52.4556489262%);
   animation-name: notification-pulse;
   animation-duration: 1.25s;
   animation-iteration-count: infinite;
@@ -323,25 +323,25 @@ canvas {
   color: white;
 }
 .goodreads-block-element-thumbnail-container .notification-badge-book-inner a.rn-link:hover {
-  color: rgb(229.5, 229.5, 229.5);
+  color: rgb(90%, 90%, 90%);
 }
 .goodreads-block-element-thumbnail-container .notification-badge-book-inner a.rn-link i {
   margin-left: 0.5rem;
 }
 .goodreads-block-element-thumbnail-container .notification-badge-book-inner .notes-last-updated {
-  color: rgb(56.155511811, 64.25, 72.344488189);
+  color: rgb(22.0217693377%, 25.1960784314%, 28.3703875251%);
   font-style: italic;
 }
 @keyframes notification-pulse {
   0% {
-    background-color: rgb(99.4642857143, 209.5357142857, 133.7619047619);
+    background-color: rgb(39.0056022409%, 82.1708683473%, 52.4556489262%);
   }
   50% {
-    background-color: rgb(158.6607142857, 226.8392857143, 179.9047619048);
-    box-shadow: 0 0 5px 0px rgb(99.4642857143, 209.5357142857, 133.7619047619);
+    background-color: rgb(62.2198879552%, 88.9565826331%, 70.5508870215%);
+    box-shadow: 0 0 5px 0px rgb(39.0056022409%, 82.1708683473%, 52.4556489262%);
   }
   100% {
-    background-color: rgb(99.4642857143, 209.5357142857, 133.7619047619);
+    background-color: rgb(39.0056022409%, 82.1708683473%, 52.4556489262%);
   }
 }
 .goodreads-block-element-note {
@@ -369,7 +369,7 @@ canvas {
   font-weight: 500;
 }
 .letterboxd-block-element-stars {
-  color: rgb(0, 249.5, 93.5625);
+  color: rgb(0%, 97.8431372549%, 36.6911764706%);
 }
 .letterboxd-block-element-rewatch {
   margin-left: 0.25rem;
@@ -379,20 +379,20 @@ canvas {
 .letterboxd-block-element-note {
   margin-left: 0.5rem;
   font-size: 13px;
-  color: rgb(94.7142857143, 110.5, 126.2857142857);
+  color: rgb(37.1428571429%, 43.3333333333%, 49.5238095238%);
 }
 .letterboxd-block-element-link {
   display: block;
-  color: rgb(133.5714285714, 148.75, 163.9285714286);
+  color: rgb(52.380952381%, 58.3333333333%, 64.2857142857%);
 }
 .letterboxd-block-element-link:hover {
-  color: rgb(177.2857142857, 187, 196.7142857143);
+  color: rgb(69.5238095238%, 73.3333333333%, 77.1428571429%);
 }
 .letterboxd-block-element-thumbnail {
   width: 100%;
   height: 0;
   padding-bottom: 155%;
-  background-color: rgb(36.5, 36.5, 36.5);
+  background-color: rgb(14.3137254902%, 14.3137254902%, 14.3137254902%);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
